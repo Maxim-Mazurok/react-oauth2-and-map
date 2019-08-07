@@ -1,0 +1,16 @@
+{
+  "name": "react-oauth2-and-map",
+  "version": "1.0.0",
+  "description": "NewMotion Use Case",
+  "engines": {
+    "node": "10.16.2",
+    "npm": "6.10.3"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Maxim Mazurok <maxim@mazurok.com> (https://maxim.mazurok.com)",
+  "license": "MIT"
+}
