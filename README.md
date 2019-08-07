@@ -15,6 +15,20 @@
    ```shell script
    npm i -g npm@$(grep '"npm"' package.json | cut -d '"' -f 4)
    ```
+   
+## Build and Run
+1. Install dependencies (both prod and dev are required for build, overwrite NODE_ENV from env variables if it's `production`):
+    ```shell script
+    NODE_ENV=development npm install
+    ```
+1. Build (for production):
+    ```shell script
+    npm run build
+    ```
+   or Run development server with live-reload:
+   ```shell script
+   npm start
+   ```
 
 # FAQ
 
