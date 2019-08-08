@@ -1,5 +1,6 @@
 import React from 'react';
 import { InputProps } from '../types/Input';
+import './Input.scss';
 
 export const Input = ({
   label,

@@ -46,7 +46,7 @@ module.exports = {
       },
       {
         test: /\.ico$/,
-        loader: "file?name=[name].[ext]",
+        loader: "file-loader?name=[name].[ext]",
       },
     ],
   },
