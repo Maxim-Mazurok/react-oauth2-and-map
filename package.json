@@ -14,12 +14,16 @@
     "tslint-check": "tslint --project tsconfig.json",
     "tslint-fix": "tslint --project tsconfig.json --fix",
     "prettier-check": "prettier {{src,test}/**/*.{tsx,ts,js,json,scss,css,html},*.{js,json,.babelrc}} --check",
-    "prettier-fix": "prettier {{src,test}/**/*.{tsx,ts,js,json,scss,css,html},*.{js,json,.babelrc}} --write"
+    "prettier-fix": "prettier {{src,test}/**/*.{tsx,ts,js,json,scss,css,html},*.{js,json,.babelrc}} --write",
+    "stylelint-check": "stylelint **/*.scss",
+    "stylelint-fix": "stylelint **/*.scss --fix",
+    "all-checks": "npm run tslint-check && npm run prettier-check && npm run stylelint-check",
+    "all-fixes": "npm run tslint-fix && npm run prettier-fix && npm run stylelint-fix"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run tslint-check && npm run prettier-check && npm test",
-      "pre-push": "npm run tslint-check && npm run prettier-check && npm test"
+      "pre-commit": "npm run all-checks && npm test",
+      "pre-push": "npm run all-checks && npm test"
     }
   },
   "keywords": [
@@ -53,6 +57,11 @@
     "sass-loader": "^7.1.0",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.0.0",
+    "stylelint": "^10.1.0",
+    "stylelint-config-recommended-scss": "^3.3.0",
+    "stylelint-prettier": "^1.1.1",
+    "stylelint-scss": "^3.9.3",
+    "stylelint-webpack-plugin": "^0.10.5",
     "ts-loader": "^6.0.4",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",

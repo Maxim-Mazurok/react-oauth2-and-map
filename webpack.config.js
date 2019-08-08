@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const TSLintPlugin = require('tslint-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 
 module.exports = {
@@ -63,5 +64,6 @@ module.exports = {
         './test/**/*.ts',
       ],
     }),
+    new StyleLintPlugin(),
   ],
 };
