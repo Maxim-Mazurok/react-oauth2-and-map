@@ -1,13 +1,12 @@
-import ReactDOM from 'react-dom'
 import React, { Component } from "react";
-import Input from "../presentational/Input.jsx";
+import Input from "../presentational/Input";
 
 class FormContainer extends Component {
   state = {
     seo_title: ""
   };
 
-  handleChange = (event) => {
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ [event.target.id]: event.target.value });
   };
 
@@ -29,7 +28,3 @@ class FormContainer extends Component {
 }
 
 export default FormContainer;
-
-
-const wrapper = document.getElementById("create-article-form");
-wrapper ? ReactDOM.render(<FormContainer />, wrapper) : false;
