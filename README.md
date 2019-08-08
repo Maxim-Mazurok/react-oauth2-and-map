@@ -3,7 +3,7 @@
 - [x] Configure webpack with babel and plugins
 - [x] Add and configure TypeScript, SCSS
 - [x] Add linting and code style solutions, such as eslint/gts
-- [ ] Set up Jest and react-testing-library for running tests
+- [x] Set up Jest and react-testing-library for running tests
 - [ ] Probably, use Bootstrap CSS framework (as on the myNewMotion)
 - [ ] Login form component + tests
 - [ ] Map component + tests (will probably use Google Maps because it's used on the myNewMotion)
