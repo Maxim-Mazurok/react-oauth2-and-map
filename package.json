@@ -13,8 +13,8 @@
     "build": "webpack --mode production",
     "tslint-check": "tslint --project tsconfig.json",
     "tslint-fix": "tslint --project tsconfig.json --fix",
-    "prettier-check": "prettier {{src,test}/**/*.{tsx,ts,js,json,scss,css,html},*.json} --check",
-    "prettier-fix": "prettier {{src,test}/**/*.{tsx,ts,js,json,scss,css,html},*.json} --write"
+    "prettier-check": "prettier {{src,test}/**/*.{tsx,ts,js,json,scss,css,html},*.{js,json,.babelrc}} --check",
+    "prettier-fix": "prettier {{src,test}/**/*.{tsx,ts,js,json,scss,css,html},*.{js,json,.babelrc}} --write"
   },
   "husky": {
     "hooks": {
@@ -57,6 +57,7 @@
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.0.0",
+    "tslint-webpack-plugin": "^2.1.0",
     "typescript": "^3.5.3",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6",
