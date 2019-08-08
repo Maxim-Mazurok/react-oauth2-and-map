@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import Input from "../presentational/Input";
+import React, { Component } from 'react';
+import { Input } from '../presentational/Input';
 
-class FormContainer extends Component {
+export class FormContainer extends Component {
   state = {
-    seo_title: ""
+    seo_title: '',
   };
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,5 +26,3 @@ class FormContainer extends Component {
     );
   }
 }
-
-export default FormContainer;

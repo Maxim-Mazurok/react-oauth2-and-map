@@ -1,15 +1,14 @@
-import React from "react";
+import React from 'react';
+import { InputProps } from '../types/Input';
 
-export type InputProps = {
-  label: string,
-  text: string,
-  type: string,
-  id: string,
-  value: string,
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-};
-
-const Input = ({ label, text, type, id, value, handleChange }: InputProps) => (
+export const Input = ({
+  label,
+  text,
+  type,
+  id,
+  value,
+  handleChange,
+}: InputProps) => (
   <div className="form-group">
     <label htmlFor={label}>{text}</label>
     <input
@@ -18,9 +17,7 @@ const Input = ({ label, text, type, id, value, handleChange }: InputProps) => (
       id={id}
       value={value}
       onChange={handleChange}
-      required
+      required={true}
     />
   </div>
 );
-
-export default Input;

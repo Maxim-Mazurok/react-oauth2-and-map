@@ -7,11 +7,11 @@ module.exports = {
   context: path.join(__dirname, "src"),
   entry: "./index.tsx",
   resolve: {
-    extensions: [".ts", ".tsx", ".js"]
+    extensions: [".ts", ".tsx", ".js"],
   },
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "bundle.min.js"
+    filename: "bundle.min.js",
   },
   module: {
     rules: [
@@ -20,28 +20,41 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           "babel-loader",
-          "awesome-typescript-loader"
-        ]
+          "awesome-typescript-loader",
+        ],
       },
       {
         test: /\.html$/,
         use: [
           {
-            loader: "html-loader"
-          }
-        ]
+            loader: "html-loader",
+          },
+        ],
       },
       {
-        test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
-        loader: 'file?name=[name].[ext]'
-      }
+        test: /\.scss$/,
+        loaders: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+            },
+          },
+          "sass-loader",
+        ],
+      },
+      {
+        test: /\.ico$/,
+        loader: "file?name=[name].[ext]",
+      },
     ],
   },
   plugins: [
     new HtmlWebPackPlugin({
       favicon: "./favicon.ico",
       template: "./index.html",
-      filename: "./index.html"
+      filename: "./index.html",
     }),
     new CheckerPlugin(),
   ],

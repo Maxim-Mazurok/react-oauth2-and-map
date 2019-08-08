@@ -8,13 +8,29 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"No test specified\"",
     "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "tslint-check": "tslint --project tsconfig.json",
+    "tslint-fix": "tslint --project tsconfig.json --fix",
+    "prettier-check": "prettier {{src,test}/**/*.{tsx,ts,js,json,scss,css,html},*.json} --check",
+    "prettier-fix": "prettier {{src,test}/**/*.{tsx,ts,js,json,scss,css,html},*.json} --write"
   },
-  "keywords": [],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run tslint-check && npm run prettier-check && npm test",
+      "pre-push": "npm run tslint-check && npm run prettier-check && npm test"
+    }
+  },
+  "keywords": [
+    "NewMotion",
+    "maps",
+    "react",
+    "OAuth2"
+  ],
   "author": "Maxim Mazurok <maxim@mazurok.com> (https://maxim.mazurok.com)",
-  "license": "MIT",
+  "private": true,
+  "license": "Proprietary",
   "dependencies": {
     "@types/react": "^16.8.25",
     "@types/react-dom": "^16.8.5",
@@ -30,8 +46,13 @@
     "babel-loader": "^8.0.6",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.3",
+    "prettier": "^1.18.2",
     "source-map-loader": "^0.2.4",
     "ts-loader": "^6.0.4",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.0.0",
     "typescript": "^3.5.3",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6",
