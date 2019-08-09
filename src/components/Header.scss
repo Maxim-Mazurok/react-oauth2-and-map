@@ -1,0 +1,6 @@
+$label-height: $label-margin-bottom + $font-size-base * $line-height-base;
+
+img#logo {
+  height: calc(#{$input-height} + #{$label-height});
+  margin: $grid-gutter-width / 2;
+}

@@ -1,14 +1,5 @@
-.container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+@import '~bootstrap/scss/mixins/_grid.scss';
 
-.header {
-  background-color: red;
-}
-
-.map {
-  height: 100%;
-  background-color: green;
+.no-gutter-fluid-container {
+  @include make-container(0);
 }

@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const TSLintPlugin = require('tslint-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
+const DotEnv = require('dotenv-webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 
 module.exports = {
@@ -18,7 +20,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts(x?)$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
         use: ['babel-loader', 'awesome-typescript-loader'],
       },
@@ -59,8 +61,11 @@ module.exports = {
         ],
       },
       {
-        test: /\.ico$/,
-        loader: 'file-loader?name=[name].[ext]',
+        test: /\.svg$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]',
+        },
       },
     ],
   },
@@ -80,5 +85,7 @@ module.exports = {
       ],
     }),
     new StyleLintPlugin(),
+    new DotEnv(),
+    new CleanWebpackPlugin(),
   ],
 };

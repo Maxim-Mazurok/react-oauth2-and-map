@@ -1,3 +1,17 @@
+@import '~bootstrap/scss/mixins/border-radius';
+
+form {
+  // margin: $form-group-margin-bottom $grid-gutter-width / 2 0; <-- expanded for better readability
+  margin-top: $form-group-margin-bottom;
+  margin-left: $grid-gutter-width / 2;
+  margin-right: $grid-gutter-width / 2;
+}
+
 button {
   margin-bottom: $form-group-margin-bottom;
+}
+
+.btn,
+.form-control {
+  @include border-radius(0);
 }
