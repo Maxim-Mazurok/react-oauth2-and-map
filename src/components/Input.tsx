@@ -1,6 +1,7 @@
 import React from 'react';
 import { InputProps } from '../types/Input';
 import './Input.scss';
+import Button from 'react-bootstrap/Button';
 
 export const Input = ({
   label,
@@ -20,5 +21,6 @@ export const Input = ({
       onChange={handleChange}
       required={true}
     />
+    <Button>Click me</Button>
   </div>
 );
