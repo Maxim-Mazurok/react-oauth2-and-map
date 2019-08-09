@@ -64,6 +64,7 @@
     "node-sass": "^4.12.0",
     "prettier": "^1.18.2",
     "sass-loader": "^7.1.0",
+    "sass-resources-loader": "^2.0.1",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.0.0",
     "stylelint": "^10.1.0",

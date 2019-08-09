@@ -1,6 +1,5 @@
 import React from 'react';
-import { Input } from './Input';
-import { InputProps } from '../types/Input';
+import { Input, InputProps } from './Input';
 import { fireEvent } from '@testing-library/dom';
 import { render } from '@testing-library/react';
 

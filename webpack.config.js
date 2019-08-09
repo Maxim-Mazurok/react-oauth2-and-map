@@ -41,6 +41,21 @@ module.exports = {
             },
           },
           'sass-loader',
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: [
+                path.resolve(
+                  __dirname,
+                  './node_modules/bootstrap/scss/_functions.scss',
+                ),
+                path.resolve(
+                  __dirname,
+                  './node_modules/bootstrap/scss/_variables.scss',
+                ),
+              ],
+            },
+          },
         ],
       },
       {

@@ -1,7 +1,15 @@
 import React from 'react';
-import { InputProps } from '../types/Input';
 import './Input.scss';
 import Button from 'react-bootstrap/Button';
+
+export interface InputProps {
+  label: string;
+  text: string;
+  type: string;
+  id: string;
+  value: string;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
 export const Input = ({
   label,
