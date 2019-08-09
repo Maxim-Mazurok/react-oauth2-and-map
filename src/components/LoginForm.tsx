@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Input } from '../presentational/Input';
+import { Input } from './Input';
 
-export class FormContainer extends Component {
+export class LoginForm extends Component {
   state = {
     seo_title: '',
   };

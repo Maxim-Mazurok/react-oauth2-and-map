@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import { FormContainer } from './components/container/FormContainer';
+import { LoginForm } from './components/LoginForm';
 
-ReactDOM.render(<FormContainer />, document.getElementById('root'));
+ReactDOM.render(<LoginForm />, document.getElementById('root'));
