@@ -12,6 +12,8 @@
 - [ ] OAuth2 service + tests (mock)
 - [ ] HTTP API service + tests (mock)
 - [ ] Integration tests
+- [ ] Cross-browser testing
+- [ ] Accessibility testing
 - [ ] Probably, no routing will be required (as seen on the myNewMotion, login and map are on the same page)
 - [ ] Add Readme with instructions
 
