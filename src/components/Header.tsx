@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Row from 'react-bootstrap/es/Row';
 import { LoginForm } from './LoginForm';
 import { UserInfo } from './UserInfo';
 import './Header.scss';
@@ -21,10 +20,10 @@ export class Header extends Component<HeaderProps, HeaderState> {
   render() {
     const { isLoggedIn } = this.state;
     return (
-      <Row className={[this.props.className || '', 'no-gutters'].join(' ')}>
+      <div className={'header'}>
         <img id={'logo'} src={logo} alt="myNewMotion" />
         {isLoggedIn ? <UserInfo /> : <LoginForm />}
-      </Row>
+      </div>
     );
   }
 }

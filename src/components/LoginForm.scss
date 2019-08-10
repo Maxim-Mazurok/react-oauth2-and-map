@@ -1,17 +1,64 @@
-@import '~bootstrap/scss/mixins/border-radius';
+@import '../variables';
 
-form {
-  // margin: $form-group-margin-bottom $grid-gutter-width / 2 0; <-- expanded for better readability
-  margin-top: $form-group-margin-bottom;
-  margin-left: $grid-gutter-width / 2;
-  margin-right: $grid-gutter-width / 2;
+input,
+button {
+  font-size: 14px;
+  line-height: 1.5;
+  height: 14px * 1.5 + 7px * 2 + 2px * 2;
+  padding: 7px 10px;
+  box-sizing: border-box;
+  outline: 0;
+  border: none;
+  border-top: solid 2px transparent;
+  border-bottom: solid 2px transparent;
+  transition: border-bottom-color 0.2s;
+}
+
+input,
+button,
+label {
+  font-weight: 600;
+}
+
+input {
+  display: block;
+  margin-right: $gutter / 2;
+
+  &:focus {
+    //box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    border-bottom-color: $accent-color;
+  }
+
+  &[type='email'] {
+    min-width: 350px;
+  }
 }
 
 button {
-  margin-bottom: $form-group-margin-bottom;
+  cursor: pointer;
+  background-color: $accent-color;
+  color: #fff;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: box-shadow 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+    background-color 0.2s;
+
+  &:hover,
+  &:focus {
+    //border-bottom-color: #fff;
+    background-color: lighten($accent-color, 10%);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+
+  &:active {
+    background-color: darken($accent-color, 10%);
+  }
 }
 
-.btn,
-.form-control {
-  @include border-radius(0);
+form {
+  margin: $gutter;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
 }

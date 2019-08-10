@@ -5,9 +5,15 @@
 - [x] Add linting and code style solutions, such as eslint/gts
 - [x] Set up Jest and react-testing-library for running tests
 - [x] Probably, use Bootstrap CSS framework (as on the myNewMotion)
-- [ ] Get rif of the Bootstrap because it's an overhead for such a simple layout, but leave it as a branch for historical purpose
-- [ ] Login form component + tests
-- [ ] Map component + tests (will probably use Google Maps because it's used on the myNewMotion)
+- [x] Get rif of the Bootstrap because it's an overhead for such a simple layout, but leave it as a branch for historical purpose
+- [ ] Login form component
+  - [x] Basic markup
+  - [ ] Media queries
+  - [ ] Tests
+- [ ] Map component
+  - [x] Basic markup
+  - [ ] Probably, DIY
+  - [ ] Tests
 - [ ] User info component + tests
 - [ ] OAuth2 service + tests (mock)
 - [ ] HTTP API service + tests (mock)

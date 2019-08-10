@@ -11,7 +11,7 @@
     "test": "jest",
     "update-snapshots": "jest --updateSnapshot",
     "test-watch": "jest --watch",
-    "start": "webpack-dev-server --open --mode development",
+    "start": "webpack-dev-server --open --mode development --host=0.0.0.0",
     "build": "webpack --mode production",
     "tslint-check": "tslint --project tsconfig.json",
     "tslint-fix": "tslint --project tsconfig.json --fix",
@@ -39,12 +39,10 @@
   "license": "Proprietary",
   "dependencies": {
     "@types/google-map-react": "^0.23.12",
-    "@types/react": "^16.9.0",
+    "@types/react": "^16.9.1",
     "@types/react-dom": "^16.8.5",
-    "bootstrap": "^4.3.1",
     "google-map-react": "^1.1.4",
     "react": "^16.9.0",
-    "react-bootstrap": "^1.0.0-beta.10",
     "react-dom": "^16.9.0"
   },
   "devDependencies": {
@@ -52,11 +50,12 @@
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
     "@testing-library/dom": "^5.6.1",
     "@testing-library/react": "^8.0.9",
     "@types/jest": "^24.0.17",
-    "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
     "dotenv-webpack": "^1.7.0",
@@ -68,8 +67,7 @@
     "jest": "^24.8.0",
     "node-sass": "^4.12.0",
     "prettier": "^1.18.2",
-    "sass-loader": "^7.1.0",
-    "sass-resources-loader": "^2.0.1",
+    "sass-loader": "^7.2.0",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.0.0",
     "stylelint": "^10.1.0",
@@ -86,6 +84,6 @@
     "typescript": "^3.5.3",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.7.2"
+    "webpack-dev-server": "^3.8.0"
   }
 }

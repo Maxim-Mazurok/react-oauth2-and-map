@@ -1,6 +1,10 @@
-$label-height: $label-margin-bottom + $font-size-base * $line-height-base;
+@import '../variables';
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+}
 
 img#logo {
-  height: calc(#{$input-height} + #{$label-height});
-  margin: $grid-gutter-width / 2;
+  margin: $gutter;
 }

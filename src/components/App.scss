@@ -1,5 +1,19 @@
-@import '~bootstrap/scss/mixins/_grid.scss';
+@import '../variables';
 
-.no-gutter-fluid-container {
-  @include make-container(0);
+body {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fff;
+  background-color: $primary-color;
+}
+
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.map {
+  height: 100%;
 }

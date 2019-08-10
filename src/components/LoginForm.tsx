@@ -1,39 +1,75 @@
 import React, { Component } from 'react';
-import Form from 'react-bootstrap/es/Form';
-import Button from 'react-bootstrap/es/Button';
-import Col from 'react-bootstrap/es/Col';
 import './LoginForm.scss';
 
-export class LoginForm extends Component {
+interface State {
+  email: string;
+  password: string;
+  emailErrorMessage: string;
+  passwordErrorMessage: string;
+}
+
+export class LoginForm extends Component<{}, State> {
+  state = {
+    email: '',
+    password: '',
+    emailErrorMessage: '',
+    passwordErrorMessage: '',
+  };
+
+  handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ email: event.target.value });
+  };
+
+  handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ password: event.target.value });
+  };
+
+  validateForm = () => {
+    if (this.state.email.length === 0) {
+    }
+  };
+
+  handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    console.log(event);
+    //
+    event.preventDefault();
+  };
+
   render() {
+    console.log(this.state);
     return (
-      <Form>
-        <Form.Row className={'align-items-end'}>
-          <Col>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>E-mail:</Form.Label>
-              <Form.Control type="email" placeholder="username@example.com" />
-            </Form.Group>
-          </Col>
+      <form onSubmit={this.handleSubmit}>
+        <div>
+          <label>
+            E-mail:
+            <input
+              required={true}
+              type="email"
+              placeholder="programming-assignment@newmotion.com"
+              onChange={this.handleEmailChange}
+            />
+          </label>
+          {this.state.emailErrorMessage.length > 0 && (
+            <span>{this.state.emailErrorMessage}</span>
+          )}
+        </div>
 
-          <Col>
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password:</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
-            </Form.Group>
-          </Col>
+        <div>
+          <label>
+            Password:
+            <input
+              required={true}
+              type="password"
+              placeholder={'•'.repeat(8)}
+              onChange={this.handlePasswordChange}
+            />
+          </label>
+        </div>
 
-          <Col className={'flex-grow-0'}>
-            <Button
-              variant="primary"
-              type="submit"
-              className={'align-bottom text-nowrap'}
-            >
-              Sign In
-            </Button>
-          </Col>
-        </Form.Row>
-      </Form>
+        <button type="submit" onClick={this.validateForm}>
+          Sign In
+        </button>
+      </form>
     );
   }
 }

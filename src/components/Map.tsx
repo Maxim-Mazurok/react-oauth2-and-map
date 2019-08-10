@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Row from 'react-bootstrap/es/Row';
-import Col from 'react-bootstrap/es/Col';
 import GoogleMapReact, { Props as GoogleMapReactProps } from 'google-map-react';
 
 export interface MapProps {
@@ -20,17 +18,15 @@ export class Map extends Component<RealMapProps> {
 
   render() {
     return (
-      <Row className={[this.props.className, 'no-gutters'].join(' ')}>
-        <Col>
-          <GoogleMapReact
-            bootstrapURLKeys={{
-              key: process.env.GOOGLE_MAPS_JS_API_KEY,
-            }}
-            defaultCenter={this.props.center}
-            defaultZoom={this.props.zoom}
-          />
-        </Col>
-      </Row>
+      <div className={this.props.className}>
+        <GoogleMapReact
+          bootstrapURLKeys={{
+            key: process.env.GOOGLE_MAPS_JS_API_KEY,
+          }}
+          defaultCenter={this.props.center}
+          defaultZoom={this.props.zoom}
+        />
+      </div>
     );
   }
 }

@@ -17,10 +17,7 @@ exports[`Input renders and changes 1`] = `
       type="text"
       value="test-value"
     />
-    <button
-      class="btn btn-primary"
-      type="button"
-    >
+    <button>
       Click me
     </button>
   </div>

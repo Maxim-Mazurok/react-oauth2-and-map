@@ -14,11 +14,12 @@
     "resolveJsonModule": true,
     "rootDir": ".",
     "skipLibCheck": true,
-    "target": "es5",
+    "target": "esnext",
     "baseUrl": "./",
     "paths": {
       "*": ["src/types/*"]
-    }
+    },
+    "noImplicitAny": true
   },
   "include": ["src", "test"]
 }

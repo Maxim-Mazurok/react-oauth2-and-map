@@ -4,7 +4,6 @@ const TSLintPlugin = require('tslint-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const DotEnv = require('dotenv-webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { CheckerPlugin } = require('awesome-typescript-loader');
 
 module.exports = {
   devtool: 'source-map',
@@ -22,7 +21,17 @@ module.exports = {
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'awesome-typescript-loader'],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: ['@babel/plugin-proposal-class-properties'],
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react',
+              '@babel/typescript',
+            ],
+          },
+        },
       },
       {
         test: /\.html$/,
@@ -43,21 +52,6 @@ module.exports = {
             },
           },
           'sass-loader',
-          {
-            loader: 'sass-resources-loader',
-            options: {
-              resources: [
-                path.resolve(
-                  __dirname,
-                  './node_modules/bootstrap/scss/_functions.scss',
-                ),
-                path.resolve(
-                  __dirname,
-                  './node_modules/bootstrap/scss/_variables.scss',
-                ),
-              ],
-            },
-          },
         ],
       },
       {
@@ -75,7 +69,6 @@ module.exports = {
       template: './index.html',
       filename: './index.html',
     }),
-    new CheckerPlugin(),
     new TSLintPlugin({
       files: [
         './src/**/*.tsx',
