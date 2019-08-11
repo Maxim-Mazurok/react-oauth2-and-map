@@ -4,6 +4,7 @@
   display: flex;
   align-items: flex-start;
   padding: $gutter;
+  flex-shrink: 0;
 
   .logo {
     height: $logo-height;
