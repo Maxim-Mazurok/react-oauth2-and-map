@@ -43,6 +43,7 @@ export class LoginForm extends Component<{}, State> {
             matches ? (
               <>
                 <input
+                  aria-label="E-mail"
                   id={'email'}
                   required={true}
                   type="email"
@@ -51,6 +52,7 @@ export class LoginForm extends Component<{}, State> {
                 />
                 <div className={'password-submit'}>
                   <input
+                    aria-label="Password"
                     required={true}
                     type="password"
                     placeholder={'Password'}

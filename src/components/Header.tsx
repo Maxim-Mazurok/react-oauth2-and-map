@@ -20,10 +20,10 @@ export class Header extends Component<HeaderProps, HeaderState> {
   render() {
     const { isLoggedIn } = this.state;
     return (
-      <div className={'header'}>
+      <header className={'header'}>
         <div className={'logo'} />
         {isLoggedIn ? <UserInfo /> : <LoginForm />}
-      </div>
+      </header>
     );
   }
 }

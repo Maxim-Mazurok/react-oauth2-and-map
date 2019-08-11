@@ -20,6 +20,7 @@
 - [ ] Integration tests
 - [ ] Cross-browser testing
 - [ ] Accessibility testing
+  - [ ] Think about the contrast of labels and button...
 - [ ] Probably, no routing will be required (as seen on the myNewMotion, login and map are on the same page)
 - [ ] Add Readme with instructions
 

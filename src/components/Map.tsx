@@ -18,7 +18,7 @@ export class Map extends Component<RealMapProps> {
 
   render() {
     return (
-      <div className={this.props.className}>
+      <main className={this.props.className}>
         <GoogleMapReact
           bootstrapURLKeys={{
             key: process.env.GOOGLE_MAPS_JS_API_KEY,
@@ -26,7 +26,7 @@ export class Map extends Component<RealMapProps> {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         />
-      </div>
+      </main>
     );
   }
 }
