@@ -8,7 +8,7 @@
 - [x] Get rif of the Bootstrap because it's an overhead for such a simple layout, but leave it as a branch for historical purpose
 - [ ] Login form component
   - [x] Basic markup
-  - [ ] Media queries
+  - [x] Media queries
   - [ ] Tests
 - [ ] Map component
   - [x] Basic markup

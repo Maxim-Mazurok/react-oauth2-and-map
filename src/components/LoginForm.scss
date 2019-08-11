@@ -1,16 +1,40 @@
 @import '../variables';
 
+form > div {
+  margin-right: $input-group-margin;
+
+  &.email {
+    width: $email-width;
+  }
+
+  &.password {
+    width: $password-width;
+  }
+
+  @media (max-width: $total-header-tablet-width) {
+    margin-right: 0;
+  }
+
+  &.password-submit {
+    display: flex;
+    width: 100%;
+    max-width: $email-width;
+  }
+}
+
+label {
+  display: block;
+}
+
 input,
 button {
-  font-size: 14px;
-  line-height: 1.5;
-  height: 14px * 1.5 + 7px * 2 + 2px * 2;
-  padding: 7px 10px;
+  padding: map_get($input-padding, y) map_get($input-padding, x);
   box-sizing: border-box;
   outline: 0;
+  line-height: $input-line-height;
   border: none;
-  border-top: solid 2px transparent;
-  border-bottom: solid 2px transparent;
+  border-top: solid $input-border-border-width transparent;
+  border-bottom: solid $input-border-border-width transparent;
   transition: border-bottom-color 0.2s;
 }
 
@@ -22,44 +46,57 @@ label {
 
 input {
   display: block;
-  margin-right: $gutter / 2;
+  width: 100%;
 
   &:focus {
-    //box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
     border-bottom-color: $accent-color;
   }
 
-  &[type='email'] {
-    min-width: 350px;
+  @media (max-width: $total-header-tablet-width) {
+    &[type='email'] {
+      width: 100%;
+      max-width: $email-width;
+      margin-bottom: $input-group-margin;
+    }
+
+    &[type='password'] {
+      margin-right: $input-group-margin;
+    }
   }
 }
 
 button {
+  $default-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
   cursor: pointer;
   background-color: $accent-color;
   color: #fff;
-  padding-left: 20px;
-  padding-right: 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  transition: box-shadow 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
-    background-color 0.2s;
+  width: $button-width;
+  box-shadow: $default-shadow;
+  transition: box-shadow, background-color 0.2s;
+  flex-shrink: 0;
 
   &:hover,
   &:focus {
-    //border-bottom-color: #fff;
     background-color: lighten($accent-color, 10%);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   &:active {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     background-color: darken($accent-color, 10%);
+    box-shadow: $default-shadow;
   }
 }
 
 form {
-  margin: $gutter;
+  margin-left: $gutter;
   display: flex;
   align-items: flex-end;
   flex-wrap: wrap;
+
+  @media (max-width: $total-header-tablet-width) {
+    display: block;
+    max-width: $email-width;
+    margin: auto;
+  }
 }

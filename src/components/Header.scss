@@ -2,9 +2,35 @@
 
 .header {
   display: flex;
-  flex-wrap: wrap;
-}
+  align-items: flex-start;
+  padding: $gutter;
 
-img#logo {
-  margin: $gutter;
+  .logo {
+    height: $logo-height;
+    width: $logo-width;
+    background-image: url(../static/logo.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    flex-shrink: 0;
+
+    @media (max-width: $total-header-desktop-width) {
+      background-image: url(../static/logo-tablet.svg);
+      height: $logo-tablet-height;
+      width: $logo-tablet-width;
+    }
+
+    @media (max-width: $total-header-tablet-width) {
+      background-image: url(../static/logo.svg);
+      height: $logo-mobile-height;
+      width: 100%;
+      margin: auto;
+      margin-bottom: $gutter-tablet;
+    }
+  }
+
+  @media (max-width: $total-header-tablet-width) {
+    padding: $gutter-tablet;
+    display: block;
+  }
 }

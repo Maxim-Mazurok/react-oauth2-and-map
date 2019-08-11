@@ -21,7 +21,7 @@ export class Header extends Component<HeaderProps, HeaderState> {
     const { isLoggedIn } = this.state;
     return (
       <div className={'header'}>
-        <img id={'logo'} src={logo} alt="myNewMotion" />
+        <div className={'logo'} />
         {isLoggedIn ? <UserInfo /> : <LoginForm />}
       </div>
     );

@@ -3,5 +3,32 @@ $accent-color: #e4702a;
 $primary-color: #60b6c0;
 $cta-background-color: #fff;
 
-// spacing
+// sizes
 $gutter: 30px;
+$gutter-tablet: $gutter / 2;
+$input-font-size: 14px;
+$input-line-height: 1.5;
+$input-padding: (
+  x: 10px,
+  y: 7px,
+);
+$input-border-border-width: 2px;
+$logo-height: $input-font-size * $input-line-height * 2 +
+  map_get($input-padding, y) * 2 + $input-border-border-width * 2;
+$logo-width: 226/35 * $logo-height;
+$logo-tablet-height: $logo-height;
+$logo-tablet-width: 2000/1514.6667 * $logo-tablet-height;
+$logo-mobile-height: $logo-tablet-height - $input-font-size * $input-line-height;
+$logo-mobile-width: 226/35 * $logo-mobile-height;
+$email-width: 350px;
+$password-width: 200px;
+$button-width: 80px;
+$input-group-margin: $gutter / 2;
+$total-header-desktop-width: $gutter * 3 + $logo-width + $email-width +
+  $password-width + $button-width + $input-group-margin * 2;
+$total-header-tablet-width: $gutter * 3 + $logo-tablet-width + $email-width +
+  $password-width + $button-width + $input-group-margin * 2;
+
+:export {
+  totalHeaderTabletWidth: $total-header-tablet-width;
+}

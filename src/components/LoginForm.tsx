@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './LoginForm.scss';
+import variables from '../variables.scss';
+import Media from 'react-media';
 
 interface State {
   email: string;
@@ -30,45 +32,64 @@ export class LoginForm extends Component<{}, State> {
   };
 
   handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    console.log(event);
-    //
     event.preventDefault();
   };
 
   render() {
-    console.log(this.state);
     return (
       <form onSubmit={this.handleSubmit}>
-        <div>
-          <label>
-            E-mail:
-            <input
-              required={true}
-              type="email"
-              placeholder="programming-assignment@newmotion.com"
-              onChange={this.handleEmailChange}
-            />
-          </label>
-          {this.state.emailErrorMessage.length > 0 && (
-            <span>{this.state.emailErrorMessage}</span>
-          )}
-        </div>
-
-        <div>
-          <label>
-            Password:
-            <input
-              required={true}
-              type="password"
-              placeholder={'•'.repeat(8)}
-              onChange={this.handlePasswordChange}
-            />
-          </label>
-        </div>
-
-        <button type="submit" onClick={this.validateForm}>
-          Sign In
-        </button>
+        <Media query={`(max-width: ${variables.totalHeaderTabletWidth})`}>
+          {matches =>
+            matches ? (
+              <>
+                <input
+                  id={'email'}
+                  required={true}
+                  type="email"
+                  placeholder="E-mail"
+                  onChange={this.handleEmailChange}
+                />
+                <div className={'password-submit'}>
+                  <input
+                    required={true}
+                    type="password"
+                    placeholder={'Password'}
+                    onChange={this.handlePasswordChange}
+                  />
+                  <button type="submit" onClick={this.validateForm}>
+                    Sign In
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className={'email'}>
+                  <label htmlFor={'email'}>E-mail:</label>
+                  <input
+                    id={'email'}
+                    required={true}
+                    type="email"
+                    placeholder="programming-assignment@newmotion.com"
+                    onChange={this.handleEmailChange}
+                  />
+                </div>
+                <div className={'password'}>
+                  <label htmlFor={'password'}>Password:</label>
+                  <input
+                    id={'password'}
+                    required={true}
+                    type="password"
+                    placeholder={'•'.repeat(8)}
+                    onChange={this.handlePasswordChange}
+                  />
+                </div>
+                <button type="submit" onClick={this.validateForm}>
+                  Sign In
+                </button>
+              </>
+            )
+          }
+        </Media>
       </form>
     );
   }
