@@ -1,95 +1,4 @@
 @import '../variables';
-
-form > div {
-  margin-right: $input-group-margin;
-
-  &.email {
-    width: $email-width;
-  }
-
-  &.password {
-    width: $password-width;
-  }
-
-  @media (max-width: $total-header-tablet-width) {
-    margin-right: 0;
-  }
-
-  &.password-submit {
-    display: flex;
-    width: 100%;
-    max-width: $email-width;
-  }
-}
-
-label {
-  display: block;
-}
-
-input,
-button {
-  padding: map_get($input-padding, y) map_get($input-padding, x);
-  box-sizing: border-box;
-  outline: 0;
-  line-height: $input-line-height;
-  border: none;
-  border-top: solid $input-border-border-width transparent;
-  border-bottom: solid $input-border-border-width transparent;
-  transition: border-bottom-color 0.2s;
-  min-width: 50px; // https://stackoverflow.com/questions/33790219/firefox-not-respecting-flex-shrink
-}
-
-input,
-button,
-label {
-  font-weight: 600;
-}
-
-input {
-  border-radius: 0;
-  display: block;
-  width: 100%;
-
-  &:focus {
-    border-bottom-color: $accent-color;
-  }
-
-  @media (max-width: $total-header-tablet-width) {
-    &[type='email'] {
-      width: 100%;
-      max-width: $email-width;
-      margin-bottom: $input-group-margin;
-    }
-
-    &[type='password'] {
-      margin-right: $input-group-margin;
-    }
-  }
-}
-
-button {
-  $default-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-
-  cursor: pointer;
-  background-color: $accent-color;
-  color: #fff;
-  width: $button-width;
-  box-shadow: $default-shadow;
-  transition: box-shadow, background-color 0.2s;
-  flex-shrink: 0;
-
-  &:hover,
-  &:focus {
-    background-color: lighten($accent-color, 10%);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  }
-
-  &:active {
-    background-color: darken($accent-color, 10%);
-    box-shadow: $default-shadow;
-  }
-}
-
 form {
   margin-left: $gutter;
   display: flex;
@@ -100,5 +9,96 @@ form {
     display: block;
     max-width: $email-width;
     margin: auto;
+  }
+
+  > div {
+    margin-right: $input-group-margin;
+
+    &.email {
+      width: $email-width;
+    }
+
+    &.password {
+      width: $password-width;
+    }
+
+    @media (max-width: $total-header-tablet-width) {
+      margin-right: 0;
+    }
+
+    &.password-submit {
+      display: flex;
+      width: 100%;
+      max-width: $email-width;
+    }
+  }
+
+  label {
+    display: block;
+  }
+
+  input,
+  button {
+    padding: map_get($input-padding, y) map_get($input-padding, x);
+    box-sizing: border-box;
+    outline: 0;
+    line-height: $input-line-height;
+    border: none;
+    border-top: solid $input-border-border-width transparent;
+    border-bottom: solid $input-border-border-width transparent;
+    transition: border-bottom-color 0.2s;
+    min-width: 50px; // https://stackoverflow.com/questions/33790219/firefox-not-respecting-flex-shrink
+  }
+
+  input,
+  button,
+  label {
+    font-weight: 600;
+  }
+
+  input {
+    border-radius: 0;
+    display: block;
+    width: 100%;
+
+    &:focus {
+      border-bottom-color: $accent-color;
+    }
+
+    @media (max-width: $total-header-tablet-width) {
+      &[type='email'] {
+        width: 100%;
+        max-width: $email-width;
+        margin-bottom: $input-group-margin;
+      }
+
+      &[type='password'] {
+        margin-right: $input-group-margin;
+      }
+    }
+  }
+
+  button {
+    $default-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+      0 1px 2px rgba(0, 0, 0, 0.24);
+
+    cursor: pointer;
+    background-color: $accent-color;
+    color: #fff;
+    width: $button-width;
+    box-shadow: $default-shadow;
+    transition: box-shadow, background-color 0.2s;
+    flex-shrink: 0;
+
+    &:hover,
+    &:focus {
+      background-color: lighten($accent-color, 10%);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+
+    &:active {
+      background-color: darken($accent-color, 10%);
+      box-shadow: $default-shadow;
+    }
   }
 }
