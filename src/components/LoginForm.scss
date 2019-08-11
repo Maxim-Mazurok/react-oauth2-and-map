@@ -36,6 +36,7 @@ button {
   border-top: solid $input-border-border-width transparent;
   border-bottom: solid $input-border-border-width transparent;
   transition: border-bottom-color 0.2s;
+  min-width: 50px; // https://stackoverflow.com/questions/33790219/firefox-not-respecting-flex-shrink
 }
 
 input,
