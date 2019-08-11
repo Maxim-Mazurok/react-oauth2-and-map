@@ -7,5 +7,4 @@ module.exports = {
       '<rootDir>/__mocks__/fileMock.js',
     '\\.(scss)$': '<rootDir>/__mocks__/styleMock.js',
   },
-  setupFilesAfterEnv: ['@testing-library/react/cleanup-after-each'],
 };
