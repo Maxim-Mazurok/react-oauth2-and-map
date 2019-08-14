@@ -3,26 +3,36 @@ import { LoginForm } from './LoginForm';
 import { UserInfo } from './UserInfo';
 import './Header.scss';
 import logo from './../static/logo.svg';
+import { CustomerInformation } from '../helpers/api';
 
 export interface HeaderProps {
   className?: string;
 }
 
 interface HeaderState {
-  isLoggedIn: boolean;
+  customerInformation?: CustomerInformation;
 }
 
 export class Header extends Component<HeaderProps, HeaderState> {
-  state = {
-    isLoggedIn: false,
+  isLoggedIn = () => {
+    return (
+      this.state !== null && this.state.hasOwnProperty('customerInformation')
+    );
+  };
+
+  setCustomerInformation = (customerInformation: CustomerInformation) => {
+    this.setState({ customerInformation });
   };
 
   render() {
-    const { isLoggedIn } = this.state;
     return (
       <header className={'header'}>
         <div className={'logo'} />
-        {isLoggedIn ? <UserInfo /> : <LoginForm />}
+        {this.isLoggedIn() ? (
+          <UserInfo customerInformation={this.state.customerInformation} />
+        ) : (
+          <LoginForm setCustomerInformation={this.setCustomerInformation} />
+        )}
       </header>
     );
   }

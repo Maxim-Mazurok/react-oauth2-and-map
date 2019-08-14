@@ -1,6 +1,7 @@
 @import '../variables';
+
 form {
-  margin-left: $gutter;
+  margin-left: auto;
   display: flex;
   align-items: flex-end;
   flex-wrap: wrap;
@@ -100,5 +101,30 @@ form {
       background-color: darken($accent-color, 10%);
       box-shadow: $default-shadow;
     }
+
+    &:disabled {
+      background-color: #777;
+      pointer-events: none;
+    }
+  }
+}
+
+.error {
+  padding: map_get($input-padding, y) map_get($input-padding, x);
+  background-color: #e15444;
+  position: fixed;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  right: $gutter;
+  top: $logo-height + $gutter + $input-group-margin;
+  margin: 0;
+  z-index: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+  @media (max-width: $total-header-tablet-width) {
+    position: static;
+    margin-top: $gutter-tablet;
+    text-align: center;
+    box-shadow: none;
   }
 }

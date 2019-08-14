@@ -8,7 +8,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   devtool: 'source-map',
   context: path.join(__dirname, 'src'),
-  entry: './index.tsx',
+  entry: ['babel-polyfill', './index.tsx'],
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
@@ -55,7 +55,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.svg$/,
+        test: /\.(sv|pn)g$/,
         loader: 'file-loader',
         options: {
           name: '[path][name].[ext]',

@@ -6,22 +6,37 @@
 - [x] Set up Jest and react-testing-library for running tests
 - [x] Probably, use Bootstrap CSS framework (as on the myNewMotion)
 - [x] Get rif of the Bootstrap because it's an overhead for such a simple layout, but leave it as a branch for historical purpose
+- [x] Probably, no routing will be required (as seen on the myNewMotion, login and map are on the same page)
 - [ ] Login form component
   - [x] Basic markup
   - [x] Media queries
+  - [x] Add loading indicator, disable fields
+  - [ ] Replace Media with [https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryListListener]
+  - [ ] Email/password validation/errors
+  - [ ] Save token
   - [ ] Tests
+  - [ ] Hide form on mobile with tiny VH
 - [ ] Map component
   - [x] Basic markup
-  - [ ] Probably, DIY
+  - [x] Probably, DIY
+  - [x] Maybe mark "Adresgegevens nog niet verwerkt" as greyed out
+  - [x] Markers for retina
+  - [ ] Add my location
+  - [ ] Maybe load map only after getting charging points to eliminate default map flash
   - [ ] Tests
-- [ ] User info component + tests
-- [ ] OAuth2 service + tests (mock)
-- [ ] HTTP API service + tests (mock)
+- [ ] User info component
+  - [x] Basic markup
+  - [ ] Tests
+- [ ] OAuth2 service
+  - [x] Basic implementation
+  - [ ] Tests (mock)
+- [ ] HTTP API service
+  - [x] Basic implementation
+  - [ ] Tests (mock)
 - [ ] Integration tests
 - [ ] Cross-browser testing
 - [ ] Accessibility testing
   - [ ] Think about the contrast of labels and button...
-- [ ] Probably, no routing will be required (as seen on the myNewMotion, login and map are on the same page)
 - [ ] Add Readme with instructions
 
 # Getting Started
@@ -63,7 +78,18 @@
 
 ## Project Structure
 
+- .env - environment variables, used to configure the app
 - .gitignore - contains list of files ignored by git
 - .nvmrc - contains node version, used by nvm
+- .prettierignore - used to ignore JS compiled from TS
+- fake-server.ts - emulates real API endpoint, used to get charging points
+- jest.config.js - used for testing
 - package.json - node config file
+- package-lock.json - another node config file with precise package versions
+- prettier.config.js - used to format the code
 - README.md - the file that you're reading ;)
+- sample-json-charge-points.json - JSON from the assignment with charge points, used by fake-server
+- stylelint.config.js - used for linting .scss files
+- tsconfig.json - used for compiling TypeScript
+- tslint.json - used for linting TypeScript
+- webpack.config.js - used for building the app
