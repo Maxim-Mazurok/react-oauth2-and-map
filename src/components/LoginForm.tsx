@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './LoginForm.scss';
 import variables from '../variables.scss';
-import Media from 'react-media';
 import { OAuth2 } from '../helpers/oauth2';
 import { API, CustomerInformation } from '../helpers/api';
 import { Utils } from '../helpers/utils';
@@ -14,15 +13,27 @@ interface State {
   email: string;
   password: string;
   loading: boolean;
+  mobile: boolean;
   errorMessage?: string;
 }
+
+const mediaQuery = window.matchMedia(
+  `(max-width: ${variables.totalHeaderTabletWidth})`,
+);
 
 export class LoginForm extends Component<Props, State> {
   state: State = {
     email: '',
     password: '',
     loading: false,
+    mobile: mediaQuery.matches,
   };
+
+  componentDidMount(): void {
+    mediaQuery.addEventListener('change', (event: MediaQueryListEvent) => {
+      this.setState({ mobile: event.matches });
+    });
+  }
 
   login(): void {
     this.setState({ loading: true });
@@ -82,72 +93,68 @@ export class LoginForm extends Component<Props, State> {
     return (
       <>
         <form onSubmit={this.handleSubmit}>
-          <Media query={`(max-width: ${variables.totalHeaderTabletWidth})`}>
-            {matches =>
-              matches ? (
-                <>
-                  <input
-                    disabled={disabled}
-                    aria-label="E-mail"
-                    id={'email'}
-                    required={true}
-                    type="email"
-                    placeholder="E-mail"
-                    onChange={this.handleEmailChange}
-                  />
-                  <div className={'password-submit'}>
-                    <input
-                      disabled={disabled}
-                      aria-label="Password"
-                      required={true}
-                      type="password"
-                      placeholder={'Password'}
-                      onChange={this.handlePasswordChange}
-                    />
-                    <button
-                      disabled={disabled}
-                      type="submit"
-                      onClick={this.validateForm}
-                    >
-                      Sign In
-                    </button>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className={'email'}>
-                    <label htmlFor={'email'}>E-mail:</label>
-                    <input
-                      disabled={disabled}
-                      id={'email'}
-                      required={true}
-                      type="email"
-                      placeholder="programming-assignment@newmotion.com"
-                      onChange={this.handleEmailChange}
-                    />
-                  </div>
-                  <div className={'password'}>
-                    <label htmlFor={'password'}>Password:</label>
-                    <input
-                      disabled={disabled}
-                      id={'password'}
-                      required={true}
-                      type="password"
-                      placeholder={'•'.repeat(8)}
-                      onChange={this.handlePasswordChange}
-                    />
-                  </div>
-                  <button
-                    disabled={disabled}
-                    type="submit"
-                    onClick={this.validateForm}
-                  >
-                    Sign In
-                  </button>
-                </>
-              )
-            }
-          </Media>
+          {this.state.mobile ? (
+            <>
+              <input
+                disabled={disabled}
+                aria-label="E-mail"
+                id={'email'}
+                required={true}
+                type="email"
+                placeholder="E-mail"
+                onChange={this.handleEmailChange}
+              />
+              <div className={'password-submit'}>
+                <input
+                  disabled={disabled}
+                  aria-label="Password"
+                  required={true}
+                  type="password"
+                  placeholder={'Password'}
+                  onChange={this.handlePasswordChange}
+                />
+                <button
+                  disabled={disabled}
+                  type="submit"
+                  onClick={this.validateForm}
+                >
+                  Sign In
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className={'email'}>
+                <label htmlFor={'email'}>E-mail:</label>
+                <input
+                  disabled={disabled}
+                  id={'email'}
+                  required={true}
+                  type="email"
+                  placeholder="programming-assignment@newmotion.com"
+                  onChange={this.handleEmailChange}
+                />
+              </div>
+              <div className={'password'}>
+                <label htmlFor={'password'}>Password:</label>
+                <input
+                  disabled={disabled}
+                  id={'password'}
+                  required={true}
+                  type="password"
+                  placeholder={'•'.repeat(8)}
+                  onChange={this.handlePasswordChange}
+                />
+              </div>
+              <button
+                disabled={disabled}
+                type="submit"
+                onClick={this.validateForm}
+              >
+                Sign In
+              </button>
+            </>
+          )}
           {this.state.errorMessage && (
             <div className={'error'}>{this.state.errorMessage}</div>
           )}

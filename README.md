@@ -11,7 +11,7 @@
   - [x] Basic markup
   - [x] Media queries
   - [x] Add loading indicator, disable fields
-  - [ ] Replace Media with [https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryListListener]
+  - [x] Replace react-media with MediaQueryListListener
   - [ ] Email/password validation/errors
   - [ ] Save token
   - [ ] Tests
