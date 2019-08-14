@@ -1,3 +1,3 @@
-declare module '@google/markerclusterer' {
+declare module '@google/markerclustererplus' {
   export = MarkerClusterer;
 }

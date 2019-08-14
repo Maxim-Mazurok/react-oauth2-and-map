@@ -4,7 +4,7 @@ import './Map.scss';
 import greenMarker from '../static/marker-green.svg';
 import unknownMarker from '../static/marker-unknown.svg';
 import clusterMarker from '../static/marker-cluster.svg';
-import MarkerClusterer from '@google/markerclusterer';
+import MarkerClusterer from '@google/markerclustererplus';
 
 export interface Props {
   className: string;
@@ -63,10 +63,13 @@ export class Map extends Component<Props, State> {
     new MarkerClusterer(this.googleMap, markers, {
       styles: [
         {
-          width: 50,
-          height: 50,
+          width: 30,
+          height: 30,
           url: clusterMarker,
           textColor: 'white',
+          textSize: 12,
+          fontWeight: 'normal',
+          fontFamily: 'inherit',
         },
       ],
     });
