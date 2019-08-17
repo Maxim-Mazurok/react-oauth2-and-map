@@ -7,11 +7,10 @@ export interface Props {
   label: string;
   type: 'password' | 'email';
   placeholder: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export function Input(props: Props): JSX.Element {
-  const { id, disabled, label, type, showLabel, placeholder, onChange } = props;
+  const { id, disabled, label, type, showLabel, placeholder } = props;
 
   return (
     <>
@@ -24,7 +23,6 @@ export function Input(props: Props): JSX.Element {
         required={true}
         type={type}
         placeholder={showLabel ? placeholder : label}
-        onChange={onChange}
       />
     </>
   );

@@ -11,3 +11,14 @@ export const testData = {
   firstName: 'TestFirstName',
   invalidCredentialsError: 'INVALID_CREDENTIALS_ERROR',
 };
+
+export const inputs = {
+  email: {
+    id: 'email',
+    label: 'E-mail',
+  },
+  password: {
+    id: 'password',
+    label: 'Password',
+  },
+};

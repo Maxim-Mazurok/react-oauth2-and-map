@@ -1,11 +1,13 @@
-import React, { Component, ReactNode } from 'react';
+import React, { BaseSyntheticEvent, Component, ReactNode } from 'react';
 import './LoginForm.scss';
 import variables from '../variables.scss';
-import { OAuth2 } from '../helpers/oauth2';
+import { AuthCredentials, OAuth2 } from '../helpers/oauth2';
 import { API, CustomerInformation } from '../helpers/api';
 import { LoginFormMobile } from './presentational/LoginForm/LoginFormMobile';
 import { ErrorMessage } from './presentational/ErrorMessage';
 import { LoginFormDesktop } from './presentational/LoginForm/LoginFormDesktop';
+import { inputs } from '../helpers/const';
+import { Utils } from '../helpers/utils';
 
 export interface Props {
   setCustomerInformation: (customerInformation: CustomerInformation) => void;
@@ -26,8 +28,6 @@ export class LoginForm extends Component<Props, State> {
     loading: false,
     mobile: mediaQuery.matches,
   };
-  private email = '';
-  private password = '';
 
   componentDidMount(): void {
     mediaQuery.addEventListener('change', (event: MediaQueryListEvent) => {
@@ -35,14 +35,11 @@ export class LoginForm extends Component<Props, State> {
     });
   }
 
-  login(): void {
+  login(credentials: AuthCredentials): void {
     this.setState({ loading: true });
     const auth = new OAuth2();
     auth
-      .auth({
-        username: this.email,
-        password: this.password,
-      })
+      .auth(credentials)
       .then(() => {
         const api = new API(auth.token);
         api
@@ -62,17 +59,20 @@ export class LoginForm extends Component<Props, State> {
       });
   }
 
-  handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    this.email = event.target.value;
-  };
-
-  handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    this.password = event.target.value;
-  };
-
-  handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  handleSubmit = (
+    event: BaseSyntheticEvent<
+      Event,
+      EventTarget & HTMLFormElement,
+      EventTarget & HTMLFormElement
+    >,
+  ): void => {
     event.preventDefault();
-    this.login();
+
+    const elements: HTMLFormControlsCollection = event.target.elements;
+    this.login({
+      username: Utils.valuedById(elements, inputs.email.id),
+      password: Utils.valuedById(elements, inputs.password.id),
+    });
   };
 
   render(): ReactNode {
@@ -84,8 +84,6 @@ export class LoginForm extends Component<Props, State> {
         <form data-testid={'login-form'} onSubmit={this.handleSubmit}>
           <LoginForm
             disabled={disabled}
-            handleEmailChange={this.handleEmailChange}
-            handlePasswordChange={this.handlePasswordChange}
             errorMessage={this.state.errorMessage}
           />
           <ErrorMessage

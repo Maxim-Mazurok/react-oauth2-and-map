@@ -1,37 +1,34 @@
 import React from 'react';
 import { Input } from './Input';
 import { SignIn } from './SignIn';
+import { inputs } from '../../../helpers/const';
 
 interface Props {
-  handleEmailChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handlePasswordChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   disabled: boolean;
   errorMessage?: string;
 }
 
 export function LoginFormMobile(props: Props): JSX.Element {
-  const { disabled, handleEmailChange, handlePasswordChange } = props;
+  const { disabled } = props;
 
   return (
     <>
       <Input
+        id={inputs.email.id}
+        label={inputs.email.label}
         disabled={disabled}
-        id={'email'}
         showLabel={false}
-        label="E-mail"
         type="email"
         placeholder="E-mail"
-        onChange={handleEmailChange}
       />
       <div className={'password-submit'}>
         <Input
+          id={inputs.password.id}
+          label={inputs.password.label}
           disabled={disabled}
-          id={'password'}
           showLabel={false}
-          label="Password"
           type="password"
           placeholder={'Password'}
-          onChange={handlePasswordChange}
         />
         <SignIn disabled={disabled} />
       </div>
