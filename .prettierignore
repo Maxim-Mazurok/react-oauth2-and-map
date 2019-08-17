@@ -1,2 +1,2 @@
 dist/
-fake-server.js
+src/fake-server.js

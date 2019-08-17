@@ -1,30 +1,32 @@
-import React, { Component, createRef, RefObject } from 'react';
+import React, { createRef, PureComponent, ReactNode, RefObject } from 'react';
 import { API, ChargingPoint } from '../helpers/api';
 import './Map.scss';
 import greenMarker from '../static/marker-green.svg';
 import unknownMarker from '../static/marker-unknown.svg';
 import clusterMarker from '../static/marker-cluster.svg';
 import MarkerClusterer from '@google/markerclustererplus';
+import { ErrorMessage } from './presentational/ErrorMessage';
 
 export interface Props {
   className: string;
 }
 
 interface State {
-  chargingPoints: ChargingPoint[];
   errorMessage?: string;
+  test: number;
 }
 
-export class Map extends Component<Props, State> {
-  state: State = {
-    chargingPoints: [],
+class Map extends PureComponent<Props, State> {
+  state: Readonly<State> = {
+    test: 0,
   };
-  googleMap: google.maps.Map;
-  googleMapRef: RefObject<HTMLDivElement> = createRef();
+  private googleMap: google.maps.Map;
+  private googleMapRef: RefObject<HTMLDivElement> = createRef();
+  private chargingPoints: ChargingPoint[] = [];
 
-  async componentDidMount() {
+  async componentDidMount(): Promise<void> {
     try {
-      this.setState({ chargingPoints: await new API().getChargingPoints() });
+      this.chargingPoints = await new API().getChargingPoints();
     } catch (e) {
       this.setState({ errorMessage: 'Failed to get charging points' });
     }
@@ -40,7 +42,7 @@ export class Map extends Component<Props, State> {
 
   createMarkers = (): void => {
     const bounds = new google.maps.LatLngBounds();
-    const markers = this.state.chargingPoints.map(chargingPoint => {
+    const markers = this.chargingPoints.map((chargingPoint: ChargingPoint) => {
       bounds.extend(
         new window.google.maps.LatLng(chargingPoint.lat, chargingPoint.lng),
       );
@@ -73,12 +75,12 @@ export class Map extends Component<Props, State> {
         },
       ],
     });
-    if (this.state.chargingPoints.length > 0) {
+    if (this.chargingPoints.length > 0) {
       this.googleMap.fitBounds(bounds);
     }
   };
 
-  createGoogleMap = () =>
+  createGoogleMap = (): google.maps.Map =>
     new window.google.maps.Map(this.googleMapRef.current, {
       zoom: 11,
       center: {
@@ -87,14 +89,16 @@ export class Map extends Component<Props, State> {
       },
     });
 
-  render() {
+  render(): ReactNode {
+    const { errorMessage } = this.state;
+
     return (
       <main className={this.props.className}>
-        {this.state.errorMessage && (
-          <div className={'map-error'}>{this.state.errorMessage}</div>
-        )}
+        <ErrorMessage className={'map-error'} errorMessage={errorMessage} />
         <div id="google-map" ref={this.googleMapRef} />
       </main>
     );
   }
 }
+
+export { Map as default };

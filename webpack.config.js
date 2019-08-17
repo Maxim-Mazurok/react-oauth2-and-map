@@ -13,25 +13,15 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js'],
   },
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.min.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].bundle.js',
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            plugins: ['@babel/plugin-proposal-class-properties'],
-            presets: [
-              '@babel/preset-env',
-              '@babel/preset-react',
-              '@babel/typescript',
-            ],
-          },
-        },
+        loader: 'babel-loader',
       },
       {
         test: /\.html$/,

@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, ReactNode, Suspense } from 'react';
 import { Header } from './Header';
 import './App.scss';
-import { Map } from './Map';
+
+const Map = React.lazy(() => import('./Map'));
 
 export class App extends Component {
-  render() {
+  render(): ReactNode {
     return (
       <div className={'app'}>
         <Header />
-        <Map className={'map'} />
+        <Suspense fallback={null}>
+          <Map className={'map'} />
+        </Suspense>
       </div>
     );
   }

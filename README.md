@@ -16,6 +16,7 @@
   - [ ] Save token
   - [ ] Tests
   - [ ] Hide form on mobile with tiny VH
+  - [ ] Debounce form loading
 - [ ] Map component
   - [x] Basic markup
   - [x] Probably, DIY
@@ -27,7 +28,7 @@
 - [ ] User info component
   - [x] Basic markup
   - [ ] Tests
-- [ ] OAuth2 service
+- [ ] Oauth2Mock service
   - [x] Basic implementation
   - [ ] Tests (mock)
 - [ ] HTTP API service

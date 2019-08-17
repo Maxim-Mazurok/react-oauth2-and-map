@@ -3,7 +3,7 @@ export const makeRequest = (
   method: string,
   headers: { [key: string]: string } = {},
   body = '',
-): Promise<XMLHttpRequest> => {
+): Promise<string> => {
   // Create the XHR request
   const request = new XMLHttpRequest();
 
@@ -18,23 +18,30 @@ export const makeRequest = (
   }
 
   // Return it as a Promise
-  return new Promise((resolve, reject) => {
-    // Setup our listener to process completed requests
-    request.onreadystatechange = () => {
-      // Only run if the request is complete
-      if (request.readyState !== 4) return;
+  return new Promise(
+    (
+      resolve: (response: string) => void,
+      reject: (response: string) => void,
+    ): void => {
+      // Setup our listener to process completed requests
+      request.onreadystatechange = (): ReturnType<
+        XMLHttpRequest['onreadystatechange']
+      > => {
+        // Only run if the request is complete
+        if (request.readyState !== 4) return;
 
-      // Process the response
-      if (request.status >= 200 && request.status < 300) {
-        // If successful
-        resolve(request);
-      } else {
-        // If failed
-        reject(request);
-      }
-    };
+        // Process the response
+        if (request.status >= 200 && request.status < 300) {
+          // If successful
+          resolve(request.response);
+        } else {
+          // If failed
+          reject(request.response);
+        }
+      };
 
-    // Send the request
-    request.send(body);
-  });
+      // Send the request
+      request.send(body);
+    },
+  );
 };

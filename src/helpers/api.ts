@@ -67,34 +67,34 @@ export class API {
   }
 
   getChargingPoints = (): Promise<ChargingPoint[]> => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject): void => {
       makeRequest(`${this.config.chargingPointsEndpoint}`, 'GET')
-        .then(data => {
+        .then((response: string) => {
           try {
-            const responseObject = JSON.parse(data.response);
-            resolve(responseObject);
+            const parsedResponse: ChargingPoint[] = JSON.parse(response);
+            resolve(parsedResponse);
           } catch (e) {
-            reject('Error parsing response');
+            reject(new Error('Error parsing response'));
           }
         })
-        .catch(data => reject(data));
+        .catch(() => reject(new Error('Failed to get charging points')));
     });
   };
 
   getCustomerBasicInformation = (): Promise<CustomerInformation> => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject): void => {
       makeRequest(`${this.config.userEndpoint}/me`, 'GET', {
         Authorization: `Bearer ${this.token}`,
       })
-        .then(data => {
+        .then((response: string) => {
           try {
-            const responseObject = JSON.parse(data.response);
-            resolve(responseObject);
+            const parsedResponse: CustomerInformation = JSON.parse(response);
+            resolve(parsedResponse);
           } catch (e) {
-            reject('Error parsing response');
+            reject(new Error('Error parsing response'));
           }
         })
-        .catch(data => reject(data.statusText));
+        .catch(() => reject(new Error('Failed to get customer data')));
     });
   };
 }

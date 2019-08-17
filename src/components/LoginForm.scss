@@ -58,7 +58,7 @@ form {
   }
 
   input {
-    border-radius: 0;
+    border-radius: 0; // for iOS safari
     display: block;
     width: 100%;
 

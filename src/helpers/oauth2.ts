@@ -1,6 +1,7 @@
 import { makeRequest } from './xhr';
+import { Utils } from './utils';
 
-interface Config {
+export interface Config {
   endpoint: string;
   httpAuth: {
     id: string;
@@ -11,6 +12,18 @@ interface Config {
 export interface AuthCredentials {
   username: string;
   password: string;
+}
+
+interface AuthSuccess {
+  token_type: string;
+  access_token: string;
+  expires_in: number;
+  refresh_token: string;
+}
+
+interface AuthError {
+  error: string;
+  error_description: string;
 }
 
 const defaultConfig: Config = {
@@ -30,17 +43,17 @@ export class OAuth2 {
     this.config = config;
   }
 
-  get token() {
+  get token(): string {
     return this.accessToken;
   }
 
-  auth = async (credentials: AuthCredentials) => {
+  auth = async (credentials: AuthCredentials): Promise<void> => {
     this.credentials = credentials;
     this.accessToken = await this.getAccessToken();
   };
 
   private getAccessToken = (): Promise<string> => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject): void => {
       makeRequest(
         `${this.config.endpoint}/access_token`,
         'POST',
@@ -51,24 +64,32 @@ export class OAuth2 {
           )}`,
         },
         new URLSearchParams({
-          grant_type: 'password',
+          grant_type: 'password', // eslint-disable-line @typescript-eslint/camelcase
           username: this.credentials.username,
           password: this.credentials.password,
         }).toString(),
       )
-        .then(data => {
+        .then((response: string) => {
           try {
-            const responseObject = JSON.parse(data.response);
-            resolve(responseObject['access_token']);
+            const parsedResponse: AuthSuccess = JSON.parse(response);
+            if (parsedResponse.hasOwnProperty('access_token')) {
+              resolve(parsedResponse.access_token);
+            } else {
+              reject(new Error('No access token in response'));
+            }
           } catch (e) {
-            reject('Error parsing response');
+            reject(new Error('Error parsing response'));
           }
         })
-        .catch(data => {
+        .catch((response: string) => {
+          let error: AuthError;
           try {
-            data = JSON.parse(data.response);
+            error = JSON.parse(response);
           } catch (e) {}
-          reject(data);
+          const errorMessage = error.hasOwnProperty('error_description')
+            ? Utils.capitalize(error.error_description)
+            : 'Auth failed';
+          reject(new Error(errorMessage));
         });
     });
   };

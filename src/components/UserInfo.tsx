@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { CustomerInformation } from '../helpers/api';
 import './UserInfo.scss';
 
@@ -6,16 +6,14 @@ interface Props {
   customerInformation: CustomerInformation;
 }
 
-export class UserInfo extends Component<Props> {
-  render() {
-    return (
-      <div className={'welcome'}>
-        Welcome,{' '}
-        <strong>
-          {this.props.customerInformation.firstName}{' '}
-          {this.props.customerInformation.lastName}
-        </strong>
-      </div>
-    );
-  }
+export function UserInfo(props: Props): JSX.Element {
+  return (
+    <div className={'welcome'} data-testid={'user-info'}>
+      Welcome,{' '}
+      <strong>
+        {props.customerInformation.firstName}{' '}
+        {props.customerInformation.lastName}
+      </strong>
+    </div>
+  );
 }

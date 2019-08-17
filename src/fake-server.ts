@@ -1,11 +1,10 @@
-import { IncomingMessage, ServerResponse } from 'http';
-
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
+import * as http from 'http'; // eslint-disable-line import/no-duplicates
+import { IncomingMessage, ServerResponse } from 'http'; // eslint-disable-line import/no-duplicates
+import * as fs from 'fs';
+import * as path from 'path';
 
 const chargePoints = fs.readFileSync(
-  path.join(__dirname, 'sample-json-charge-points.json'),
+  path.resolve(__dirname, '../sample-json-charge-points.json'),
 );
 
 http
