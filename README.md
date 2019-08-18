@@ -36,6 +36,7 @@
   - [ ] Tests (mock)
 - [ ] Integration tests
 - [ ] Cross-browser testing
+  - [ ] Determine which polyfills are actually required (reduce bundle size)
 - [ ] Accessibility testing
   - [ ] Think about the contrast of labels and button...
 - [ ] Add Readme with instructions
