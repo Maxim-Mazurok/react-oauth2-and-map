@@ -10,7 +10,7 @@ afterEach(() => {
   [OAuth2, getAccessToken].map(x => x.mockClear());
 });
 
-test('LoginForm renders', async () => {
+test('LoginForm disabled while logging in', async () => {
   const inputTestProps: Props = {
     setCustomerInformation: jest.fn(),
   };
