@@ -82,10 +82,7 @@ export class LoginForm extends Component<Props, State> {
     return (
       <>
         <form data-testid={'login-form'} onSubmit={this.handleSubmit}>
-          <LoginForm
-            disabled={disabled}
-            errorMessage={this.state.errorMessage}
-          />
+          <LoginForm disabled={disabled} />
           <ErrorMessage
             className={'error'}
             errorMessage={this.state.errorMessage}

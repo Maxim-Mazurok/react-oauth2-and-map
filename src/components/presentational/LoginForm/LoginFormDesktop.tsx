@@ -1,11 +1,10 @@
 import React from 'react';
-import { SignIn } from './SignIn';
 import { Input } from './Input';
+import { SignIn } from './SignIn';
 import { inputs } from '../../../helpers/const';
 
 interface Props {
   disabled: boolean;
-  errorMessage?: string;
 }
 
 export function LoginFormDesktop(props: Props): JSX.Element {
@@ -15,22 +14,20 @@ export function LoginFormDesktop(props: Props): JSX.Element {
     <>
       <div className={'email'}>
         <Input
+          disabled={disabled}
           id={inputs.email.id}
           label={`${inputs.email.label}:`}
-          showLabel={true}
-          disabled={disabled}
-          type="email"
           placeholder="programming-assignment@newmotion.com"
+          type="email"
         />
       </div>
       <div className={'password'}>
         <Input
+          disabled={disabled}
           id={inputs.password.id}
           label={`${inputs.password.label}:`}
-          showLabel={true}
-          disabled={disabled}
-          type="password"
           placeholder={'•'.repeat(8)}
+          type="password"
         />
       </div>
       <SignIn disabled={disabled} />

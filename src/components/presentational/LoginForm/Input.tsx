@@ -1,28 +1,40 @@
 import React from 'react';
 
-export interface Props {
-  showLabel: boolean;
+interface BaseProps {
   id: string;
   disabled: boolean;
-  label: string;
   type: 'password' | 'email';
   placeholder: string;
 }
 
-export function Input(props: Props): JSX.Element {
-  const { id, disabled, label, type, showLabel, placeholder } = props;
+interface PropsWithLabel extends BaseProps {
+  label: string;
+}
+interface PropsWithAriaLabel extends BaseProps {
+  ariaLabel: string;
+}
+
+export function Input(props: PropsWithAriaLabel | PropsWithLabel): JSX.Element {
+  const { id, disabled, type, placeholder } = props;
+  const label = props.hasOwnProperty('label')
+    ? (props as PropsWithLabel).label
+    : false;
+  const ariaLabel = props.hasOwnProperty('ariaLabel')
+    ? (props as PropsWithAriaLabel).ariaLabel
+    : false;
+  const inputProps = ariaLabel ? { ariaLabel } : {};
 
   return (
     <>
-      {showLabel && <label htmlFor={id}>{label}</label>}
+      {label && <label htmlFor={id}>{label}</label>}
       <input
+        {...inputProps}
         id={id}
         data-testid={id}
         disabled={disabled}
-        aria-label={label}
         required={true}
         type={type}
-        placeholder={showLabel ? placeholder : label}
+        placeholder={placeholder}
       />
     </>
   );

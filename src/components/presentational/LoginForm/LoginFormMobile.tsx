@@ -5,7 +5,6 @@ import { inputs } from '../../../helpers/const';
 
 interface Props {
   disabled: boolean;
-  errorMessage?: string;
 }
 
 export function LoginFormMobile(props: Props): JSX.Element {
@@ -14,21 +13,19 @@ export function LoginFormMobile(props: Props): JSX.Element {
   return (
     <>
       <Input
-        id={inputs.email.id}
-        label={inputs.email.label}
         disabled={disabled}
-        showLabel={false}
-        type="email"
+        id={inputs.email.id}
+        ariaLabel={inputs.email.label}
         placeholder="E-mail"
+        type="email"
       />
       <div className={'password-submit'}>
         <Input
-          id={inputs.password.id}
-          label={inputs.password.label}
           disabled={disabled}
-          showLabel={false}
+          id={inputs.password.id}
+          ariaLabel={inputs.password.label}
+          placeholder="Password"
           type="password"
-          placeholder={'Password'}
         />
         <SignIn disabled={disabled} />
       </div>
