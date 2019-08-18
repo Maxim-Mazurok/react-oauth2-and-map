@@ -33,8 +33,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run all-checks && npm test",
-      "pre-push": "npm run all-checks && npm test"
+      "pre-commit": "PATH=~/.nvm/versions/node/v$(grep '\"node\"' package.json | cut -d '\"' -f 4)/bin:$PATH && npm run all-checks && npm test",
+      "pre-push": "PATH=~/.nvm/versions/node/v$(grep '\"node\"' package.json | cut -d '\"' -f 4)/bin:$PATH && npm run all-checks && npm test"
     }
   },
   "keywords": [
