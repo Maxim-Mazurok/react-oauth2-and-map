@@ -10,7 +10,7 @@ import {
   API,
   getCustomerBasicInformation,
 } from '../helpers/__mocks__/api.mock';
-import { auth, OAuth2 } from '../helpers/__mocks__/oauth2.mock';
+import { getAccessToken, OAuth2 } from '../helpers/__mocks__/oauth2.mock';
 import { login } from '../helpers/__spec__/login';
 import { Header } from './Header'; // should be imported only after all mocks
 
@@ -18,7 +18,9 @@ const flushPromises = (): Promise<NodeJS.Immediate> =>
   new Promise(setImmediate);
 
 afterEach(() => {
-  [API, OAuth2, auth, getCustomerBasicInformation].map(x => x.mockClear());
+  [API, OAuth2, getAccessToken, getCustomerBasicInformation].map(mock =>
+    mock.mockClear(),
+  );
 });
 
 test('Header with valid credentials', async () => {
@@ -39,7 +41,7 @@ test('Header with valid credentials', async () => {
   expect(userInfo.textContent).toMatch(/^Welcome, TestFirstName TestLastName$/); // contains welcome
 
   expect(OAuth2).toHaveBeenCalledTimes(1); // OAuth2 constructor
-  expect(auth).toHaveBeenCalledTimes(1); // authentication
+  expect(getAccessToken).toHaveBeenCalledTimes(1); // authentication
   expect(API).toHaveBeenCalledTimes(1); // API constructor
   expect(getCustomerBasicInformation).toHaveBeenCalledTimes(1); // getting basic customer information
 });
@@ -63,7 +65,7 @@ test('Header with invalid credentials', async () => {
   expect(queryAllByText(testData.invalidCredentialsError)).toHaveLength(1); // error text is present
 
   expect(OAuth2).toHaveBeenCalledTimes(1); // OAuth2 constructor
-  expect(auth).toHaveBeenCalledTimes(1); // authentication
+  expect(getAccessToken).toHaveBeenCalledTimes(1); // authentication
   expect(getCustomerBasicInformation).not.toBeCalled(); // getting basic customer information
 });
 

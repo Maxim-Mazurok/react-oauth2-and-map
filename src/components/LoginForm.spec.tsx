@@ -1,13 +1,13 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '../__mocks__/window.mock';
-import { auth, OAuth2 } from '../helpers/__mocks__/oauth2.mock';
+import { getAccessToken, OAuth2 } from '../helpers/__mocks__/oauth2.mock';
 import { getFormControls, login } from '../helpers/__spec__/login';
 import { testData } from '../helpers/const';
 import { LoginForm, Props } from './LoginForm'; // should be imported only after all mocks
 
 afterEach(() => {
-  [OAuth2, auth].map(x => x.mockClear());
+  [OAuth2, getAccessToken].map(x => x.mockClear());
 });
 
 test('LoginForm renders', async () => {

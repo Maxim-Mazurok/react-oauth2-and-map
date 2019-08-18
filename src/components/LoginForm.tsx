@@ -35,28 +35,12 @@ export class LoginForm extends Component<Props, State> {
     });
   }
 
-  login(credentials: AuthCredentials): void {
-    this.setState({ loading: true });
+  async login(credentials: AuthCredentials): Promise<void> {
     const auth = new OAuth2();
-    auth
-      .auth(credentials)
-      .then(() => {
-        const api = new API(auth.token);
-        api
-          .getCustomerBasicInformation()
-          .then(customerInformation => {
-            this.props.setCustomerInformation(customerInformation);
-          })
-          .catch(() => {
-            this.setState({
-              errorMessage: 'Getting customer information failed',
-              loading: false,
-            });
-          });
-      })
-      .catch((e: Error) => {
-        this.setState({ errorMessage: e.message, loading: false });
-      });
+    const token = await auth.getAccessToken(credentials);
+    const api = new API(token);
+    const customerInformation = await api.getCustomerBasicInformation();
+    this.props.setCustomerInformation(customerInformation);
   }
 
   handleSubmit = (
@@ -67,12 +51,15 @@ export class LoginForm extends Component<Props, State> {
     >,
   ): void => {
     event.preventDefault();
+    this.setState({ loading: true });
 
     const elements: HTMLFormControlsCollection = event.target.elements;
     this.login({
       username: Utils.valuedById(elements, inputs.email.id),
       password: Utils.valuedById(elements, inputs.password.id),
-    });
+    }).catch((e: Error) =>
+      this.setState({ errorMessage: e.message, loading: false }),
+    );
   };
 
   render(): ReactNode {

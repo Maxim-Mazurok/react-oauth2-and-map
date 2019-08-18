@@ -36,23 +36,12 @@ const defaultConfig: Config = {
 
 export class OAuth2 {
   private config: Config;
-  private credentials: AuthCredentials;
-  private accessToken = '';
 
   constructor(config: Config = defaultConfig) {
     this.config = config;
   }
 
-  get token(): string {
-    return this.accessToken;
-  }
-
-  auth = async (credentials: AuthCredentials): Promise<void> => {
-    this.credentials = credentials;
-    this.accessToken = await this.getAccessToken();
-  };
-
-  private getAccessToken = (): Promise<string> => {
+  getAccessToken = (credentials: AuthCredentials): Promise<string> => {
     return new Promise((resolve, reject): void => {
       makeRequest(
         `${this.config.endpoint}/access_token`,
@@ -65,8 +54,8 @@ export class OAuth2 {
         },
         new URLSearchParams({
           grant_type: 'password', // eslint-disable-line @typescript-eslint/camelcase
-          username: this.credentials.username,
-          password: this.credentials.password,
+          username: credentials.username,
+          password: credentials.password,
         }).toString(),
       )
         .then((response: string) => {
