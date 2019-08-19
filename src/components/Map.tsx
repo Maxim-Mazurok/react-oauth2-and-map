@@ -1,5 +1,5 @@
 import React, { createRef, PureComponent, ReactNode, RefObject } from 'react';
-import { API, ChargingPoint } from '../helpers/api';
+import { getChargingPoints, ChargingPoint } from '../helpers/api';
 import './Map.scss';
 import greenMarker from '../static/marker-green.svg';
 import unknownMarker from '../static/marker-unknown.svg';
@@ -43,7 +43,7 @@ export class Map extends PureComponent<Props, State> {
 
   private async loadChargingPoints(): Promise<void> {
     try {
-      this.chargingPoints = await new API().getChargingPoints();
+      this.chargingPoints = await getChargingPoints();
     } catch (e) {
       this.setState({ errorMessage: 'Failed to get charging points' });
     }

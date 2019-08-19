@@ -1,4 +1,5 @@
 import React from 'react';
+import { testIDs } from '../../helpers/const';
 
 interface Props {
   className?: string;
@@ -7,7 +8,7 @@ interface Props {
 
 export function ErrorMessage(props: Props): JSX.Element {
   return props.errorMessage ? (
-    <div data-testid={'error'} className={props.className}>
+    <div data-testid={testIDs.error} className={props.className}>
       {props.errorMessage}
     </div>
   ) : null;

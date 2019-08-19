@@ -2,6 +2,7 @@ import React from 'react';
 
 interface BaseProps {
   id: string;
+  testId: string;
   disabled: boolean;
   type: 'password' | 'email';
   placeholder: string;
@@ -15,7 +16,7 @@ interface PropsWithAriaLabel extends BaseProps {
 }
 
 export function Input(props: PropsWithAriaLabel | PropsWithLabel): JSX.Element {
-  const { id, disabled, type, placeholder } = props;
+  const { id, testId, disabled, type, placeholder } = props;
   const label = props.hasOwnProperty('label')
     ? (props as PropsWithLabel).label
     : false;
@@ -30,7 +31,7 @@ export function Input(props: PropsWithAriaLabel | PropsWithLabel): JSX.Element {
       <input
         {...inputProps}
         id={id}
-        data-testid={id}
+        data-testid={testId}
         disabled={disabled}
         required={true}
         type={type}

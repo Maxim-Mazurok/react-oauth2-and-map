@@ -1,12 +1,15 @@
 import React, { BaseSyntheticEvent, Component, ReactNode } from 'react';
 import './LoginForm.scss';
 import variables from '../variables.scss';
-import { AuthCredentials, OAuth2 } from '../helpers/oauth2';
-import { API, CustomerInformation } from '../helpers/api';
+import { AuthCredentials, getAccessToken } from '../helpers/oauth2';
+import {
+  CustomerInformation,
+  getCustomerBasicInformation,
+} from '../helpers/api';
 import { LoginFormMobile } from './presentational/LoginForm/LoginFormMobile';
 import { ErrorMessage } from './presentational/ErrorMessage';
 import { LoginFormDesktop } from './presentational/LoginForm/LoginFormDesktop';
-import { inputs } from '../helpers/const';
+import { inputs, testIDs } from '../helpers/const';
 import { Utils } from '../helpers/utils';
 
 export interface Props {
@@ -36,10 +39,8 @@ export class LoginForm extends Component<Props, State> {
   }
 
   async login(credentials: AuthCredentials): Promise<void> {
-    const auth = new OAuth2();
-    const token = await auth.getAccessToken(credentials);
-    const api = new API(token);
-    const customerInformation = await api.getCustomerBasicInformation();
+    const token = await getAccessToken(credentials);
+    const customerInformation = await getCustomerBasicInformation(token);
     this.props.setCustomerInformation(customerInformation);
   }
 
@@ -68,7 +69,7 @@ export class LoginForm extends Component<Props, State> {
 
     return (
       <>
-        <form data-testid={'login-form'} onSubmit={this.handleSubmit}>
+        <form data-testid={testIDs.loginForm} onSubmit={this.handleSubmit}>
           <LoginForm disabled={disabled} />
           <ErrorMessage
             className={'error'}

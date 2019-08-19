@@ -16,6 +16,7 @@ export function LoginFormDesktop(props: Props): JSX.Element {
         <Input
           disabled={disabled}
           id={inputs.email.id}
+          testId={inputs.email.testId}
           label={`${inputs.email.label}:`}
           placeholder="programming-assignment@newmotion.com"
           type="email"
@@ -25,6 +26,7 @@ export function LoginFormDesktop(props: Props): JSX.Element {
         <Input
           disabled={disabled}
           id={inputs.password.id}
+          testId={inputs.password.testId}
           label={`${inputs.password.label}:`}
           placeholder={'•'.repeat(8)}
           type="password"

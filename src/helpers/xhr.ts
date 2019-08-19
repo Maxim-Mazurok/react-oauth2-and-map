@@ -1,13 +1,15 @@
-export const makeRequest = (
-  url: string,
-  method: string,
-  headers: { [key: string]: string } = {},
-  body = '',
-): Promise<string> => {
+export const makeRequest = (params: {
+  url: string;
+  method: string;
+  headers?: { [key: string]: string };
+  body?: URLSearchParams;
+}): Promise<string> => {
+  const { url, method, headers, body } = params;
+
   // Create the XHR request
   const request = new XMLHttpRequest();
 
-  // Setup our HTTP request
+  // Setup HTTP request
   request.open(method || 'GET', url, true);
 
   // Set headers
@@ -41,7 +43,7 @@ export const makeRequest = (
       };
 
       // Send the request
-      request.send(body);
+      request.send(body === undefined ? '' : body.toString());
     },
   );
 };

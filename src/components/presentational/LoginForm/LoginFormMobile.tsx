@@ -15,6 +15,7 @@ export function LoginFormMobile(props: Props): JSX.Element {
       <Input
         disabled={disabled}
         id={inputs.email.id}
+        testId={inputs.email.testId}
         ariaLabel={inputs.email.label}
         placeholder="E-mail"
         type="email"
@@ -23,6 +24,7 @@ export function LoginFormMobile(props: Props): JSX.Element {
         <Input
           disabled={disabled}
           id={inputs.password.id}
+          testId={inputs.password.testId}
           ariaLabel={inputs.password.label}
           placeholder="Password"
           type="password"

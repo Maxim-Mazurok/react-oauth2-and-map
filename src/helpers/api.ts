@@ -1,6 +1,7 @@
 import { makeRequest } from './xhr';
+import { config } from './const';
 
-interface Config {
+export interface APIConfig {
   userEndpoint: string;
   chargingPointsEndpoint: string;
 }
@@ -52,49 +53,43 @@ export interface ChargingPoint {
   lat: number;
 }
 
-const defaultConfig: Config = {
-  userEndpoint: process.env.USER_API_ENDPOINT,
-  chargingPointsEndpoint: process.env.CHARGING_POINTS_API_ENDPOINT,
+export const getChargingPoints = (): Promise<ChargingPoint[]> => {
+  return new Promise((resolve, reject): void => {
+    makeRequest({
+      url: `${config.chargingPointsEndpoint}`,
+      method: 'GET',
+    })
+      .then((response: string) => {
+        try {
+          const parsedResponse: ChargingPoint[] = JSON.parse(response);
+          resolve(parsedResponse);
+        } catch (e) {
+          reject(new Error('Error parsing response'));
+        }
+      })
+      .catch(() => reject(new Error('Failed to get charging points')));
+  });
 };
 
-export class API {
-  private config: Config;
-  private token: string;
-
-  constructor(token = '', config: Config = defaultConfig) {
-    this.config = config;
-    this.token = token;
-  }
-
-  getChargingPoints = (): Promise<ChargingPoint[]> => {
-    return new Promise((resolve, reject): void => {
-      makeRequest(`${this.config.chargingPointsEndpoint}`, 'GET')
-        .then((response: string) => {
-          try {
-            const parsedResponse: ChargingPoint[] = JSON.parse(response);
-            resolve(parsedResponse);
-          } catch (e) {
-            reject(new Error('Error parsing response'));
-          }
-        })
-        .catch(() => reject(new Error('Failed to get charging points')));
-    });
-  };
-
-  getCustomerBasicInformation = (): Promise<CustomerInformation> => {
-    return new Promise((resolve, reject): void => {
-      makeRequest(`${this.config.userEndpoint}/me`, 'GET', {
-        Authorization: `Bearer ${this.token}`,
+export const getCustomerBasicInformation = (
+  token: string,
+): Promise<CustomerInformation> => {
+  return new Promise((resolve, reject): void => {
+    makeRequest({
+      url: `${config.userEndpoint}/me`,
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response: string) => {
+        try {
+          const parsedResponse: CustomerInformation = JSON.parse(response);
+          resolve(parsedResponse);
+        } catch (e) {
+          reject(new Error('Error parsing response'));
+        }
       })
-        .then((response: string) => {
-          try {
-            const parsedResponse: CustomerInformation = JSON.parse(response);
-            resolve(parsedResponse);
-          } catch (e) {
-            reject(new Error('Error parsing response'));
-          }
-        })
-        .catch(() => reject(new Error('Failed to get customer data')));
-    });
-  };
-}
+      .catch(() => reject(new Error('Failed to get customer data')));
+  });
+};

@@ -1,9 +1,10 @@
-import { AuthCredentials } from '../oauth2';
+import { AuthCredentials } from '../../../helpers/oauth2';
 import {
   BoundFunction,
   fireEvent,
   GetByBoundAttribute,
 } from '@testing-library/dom';
+import { testIDs } from '../../../helpers/const';
 
 export const getFormControls = (
   getByTestId: BoundFunction<GetByBoundAttribute>,
@@ -12,9 +13,9 @@ export const getFormControls = (
   email: HTMLButtonElement;
   password: HTMLButtonElement;
 } => {
-  const button = getByTestId('sign-in') as HTMLButtonElement;
-  const email = getByTestId('email') as HTMLInputElement;
-  const password = getByTestId('password') as HTMLInputElement;
+  const button = getByTestId(testIDs.signIn) as HTMLButtonElement;
+  const email = getByTestId(testIDs.email) as HTMLInputElement;
+  const password = getByTestId(testIDs.password) as HTMLInputElement;
   return { button, email, password };
 };
 
