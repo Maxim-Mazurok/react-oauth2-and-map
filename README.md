@@ -12,34 +12,40 @@
   - [x] Media queries
   - [x] Add loading indicator, disable fields
   - [x] Replace react-media with MediaQueryListListener
-  - [ ] Email/password validation/errors
-  - [ ] Save token
-  - [ ] Tests
-  - [ ] Hide form on mobile with tiny VH
-  - [ ] Debounce form loading
+  - [ ] (future) Email/password validation/errors
+  - [ ] (future) Save token
+  - [ ] (future) Hide form on mobile with tiny VH
+  - [ ] (future) Debounce form loading
+  - [ ] (!!!) Unit tests
 - [ ] Map component
   - [x] Basic markup
   - [x] Probably, DIY
   - [x] Maybe mark "Adresgegevens nog niet verwerkt" as greyed out
   - [x] Markers for retina
-  - [ ] Add my location
-  - [ ] Maybe load map only after getting charging points to eliminate default map flash
-  - [ ] Tests
+  - [ ] (future) Add "locate me" button
+  - [ ] (low priority) - partially solved by loading simultaneously. Maybe load map only after getting charging points to eliminate default map flash
+  - [ ] (!!!) Unit tests
 - [ ] User info component
   - [x] Basic markup
-  - [ ] Tests
-- [ ] Oauth2Mock service
+  - [ ] (!!!) Unit tests
+- [ ] Oauth2 service
   - [x] Basic implementation
-  - [ ] Tests (mock)
+  - [ ] (!!!) Unit tests
 - [ ] HTTP API service
   - [x] Basic implementation
-  - [ ] Tests (mock)
+  - [ ] (!!!) Unit tests
 - [ ] Integration tests
+  - [x] Login Form
+  - [x] Header (login + user info)
+  - [ ] (!!!) Map
 - [ ] Cross-browser testing
-  - [ ] Determine which polyfills are actually required (reduce bundle size)
+  - [ ] (future) Determine which polyfills are actually required (reduce bundle size)
+  - [ ] (!!!) Basic testing
 - [ ] Accessibility testing
-  - [ ] Think about the contrast of labels and button...
-- [ ] Add Readme with instructions
+  - [ ] (future) Think about the contrast of labels and button...
+  - [ ] (!!!) Basic testing (pa11y)
+- [ ] (!!!) Add Readme with instructions
+- [ ] (!!!) Add more comments
 
 # Getting Started
 
