@@ -56,8 +56,10 @@ export class LoginForm extends PureComponent<Props, State> {
   }
 
   private async login(credentials: AuthCredentials): Promise<void> {
-    const token = await getAccessToken(credentials);
-    const customerInformation = await getCustomerBasicInformation(token);
+    const token: string = await getAccessToken(credentials);
+    const customerInformation: CustomerInformation = await getCustomerBasicInformation(
+      token,
+    );
     this.props.setCustomerInformation(customerInformation);
   }
 
