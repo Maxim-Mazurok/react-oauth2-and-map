@@ -7,7 +7,7 @@ import {
 import '../../__mocks__/window.mock';
 import { login } from './helpers/login';
 import { testData, testIDs } from '../../helpers/const';
-import { makeRequest } from '../../helpers/xhr.mock';
+import { makeRequest } from '../../__mocks__/xhr.mock';
 import { Header } from '../../components/Header'; // should be imported only after all mocks
 
 const flushPromises = (): Promise<NodeJS.Immediate> =>

@@ -1,5 +1,5 @@
-import { config, testData } from './const';
-import { makeRequest as makeRequestOriginal } from './xhr';
+import { config, testData } from '../helpers/const';
+import { makeRequest as makeRequestOriginal } from '../helpers/xhr';
 
 export const makeRequest = jest
   .fn<
@@ -69,6 +69,6 @@ export const makeRequest = jest
     }
   });
 
-jest.mock('./xhr', () => ({
+jest.mock('../helpers/xhr.ts', () => ({
   makeRequest,
 }));

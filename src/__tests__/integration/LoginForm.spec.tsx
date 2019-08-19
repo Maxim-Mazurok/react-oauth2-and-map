@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import '../../__mocks__/window.mock';
 import { getFormControls, login } from './helpers/login';
 import { testData } from '../../helpers/const';
-import { makeRequest } from '../../helpers/xhr.mock';
+import { makeRequest } from '../../__mocks__/xhr.mock';
 import { LoginForm, Props } from '../../components/LoginForm'; // should be imported only after all mocks
 
 afterEach(() => {
