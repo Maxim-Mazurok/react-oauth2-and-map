@@ -1,4 +1,4 @@
-import React, { Component, ReactNode } from 'react';
+import React, { PureComponent, ReactNode } from 'react';
 import { LoginForm } from './LoginForm';
 import { UserInfo } from './UserInfo';
 import './Header.scss';
@@ -8,20 +8,16 @@ export interface Props {
   className?: string;
 }
 
-interface HeaderState {
+interface State {
   customerInformation?: CustomerInformation;
 }
 
-export class Header extends Component<Props, HeaderState> {
-  isLoggedIn = (): boolean => {
+export class Header extends PureComponent<Props, State> {
+  private get isLoggedIn(): boolean {
     return (
       this.state !== null && this.state.hasOwnProperty('customerInformation')
     );
-  };
-
-  setCustomerInformation = (customerInformation: CustomerInformation): void => {
-    this.setState({ customerInformation });
-  };
+  }
 
   render(): ReactNode {
     const customerInformation = this.state
@@ -31,7 +27,7 @@ export class Header extends Component<Props, HeaderState> {
     return (
       <header className={'header'}>
         <div className={'logo'} />
-        {this.isLoggedIn() ? (
+        {this.isLoggedIn ? (
           <UserInfo customerInformation={customerInformation} />
         ) : (
           <LoginForm setCustomerInformation={this.setCustomerInformation} />
@@ -39,4 +35,10 @@ export class Header extends Component<Props, HeaderState> {
       </header>
     );
   }
+
+  private setCustomerInformation = (
+    customerInformation: CustomerInformation,
+  ): void => {
+    this.setState({ customerInformation });
+  };
 }

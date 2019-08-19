@@ -1,4 +1,4 @@
-import React, { BaseSyntheticEvent, Component, ReactNode } from 'react';
+import React, { BaseSyntheticEvent, PureComponent, ReactNode } from 'react';
 import './LoginForm.scss';
 import variables from '../variables.scss';
 import { AuthCredentials, getAccessToken } from '../helpers/oauth2';
@@ -26,7 +26,7 @@ const mediaQuery = window.matchMedia(
   `(max-width: ${variables.totalHeaderTabletWidth})`,
 );
 
-export class LoginForm extends Component<Props, State> {
+export class LoginForm extends PureComponent<Props, State> {
   state: Readonly<State> = {
     loading: false,
     mobile: mediaQuery.matches,
@@ -37,31 +37,6 @@ export class LoginForm extends Component<Props, State> {
       this.setState({ mobile: event.matches });
     });
   }
-
-  async login(credentials: AuthCredentials): Promise<void> {
-    const token = await getAccessToken(credentials);
-    const customerInformation = await getCustomerBasicInformation(token);
-    this.props.setCustomerInformation(customerInformation);
-  }
-
-  handleSubmit = (
-    event: BaseSyntheticEvent<
-      Event,
-      EventTarget & HTMLFormElement,
-      EventTarget & HTMLFormElement
-    >,
-  ): void => {
-    event.preventDefault();
-    this.setState({ loading: true });
-
-    const elements: HTMLFormControlsCollection = event.target.elements;
-    this.login({
-      username: Utils.valuedById(elements, inputs.email.id),
-      password: Utils.valuedById(elements, inputs.password.id),
-    }).catch((e: Error) =>
-      this.setState({ errorMessage: e.message, loading: false }),
-    );
-  };
 
   render(): ReactNode {
     const disabled = this.state.loading;
@@ -79,4 +54,29 @@ export class LoginForm extends Component<Props, State> {
       </>
     );
   }
+
+  private async login(credentials: AuthCredentials): Promise<void> {
+    const token = await getAccessToken(credentials);
+    const customerInformation = await getCustomerBasicInformation(token);
+    this.props.setCustomerInformation(customerInformation);
+  }
+
+  private handleSubmit = (
+    event: BaseSyntheticEvent<
+      Event,
+      EventTarget & HTMLFormElement,
+      EventTarget & HTMLFormElement
+    >,
+  ): void => {
+    event.preventDefault();
+    this.setState({ loading: true });
+
+    const elements: HTMLFormControlsCollection = event.target.elements;
+    this.login({
+      username: Utils.valuedById(elements, inputs.email.id),
+      password: Utils.valuedById(elements, inputs.password.id),
+    }).catch((e: Error) =>
+      this.setState({ errorMessage: e.message, loading: false }),
+    );
+  };
 }
