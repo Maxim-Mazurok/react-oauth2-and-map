@@ -16,7 +16,7 @@ const validateInputBlock = (
   container: HTMLElement,
   type: InputProps['type'],
   props: Props,
-) => {
+): void => {
   const block = container.querySelector(`.${type}`);
   expect(block).not.toBeNull();
   //  label

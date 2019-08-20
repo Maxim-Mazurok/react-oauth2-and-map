@@ -13,7 +13,7 @@ export const validateInputBlock = (
   container: HTMLElement,
   type: InputProps['type'],
   props: LoginFormMobileProps | LoginFormDesktopProps,
-) => {
+): void => {
   const block =
     type === 'password'
       ? container.querySelector('.password-submit')
