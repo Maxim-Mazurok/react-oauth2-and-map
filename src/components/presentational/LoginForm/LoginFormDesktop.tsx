@@ -14,6 +14,7 @@ export function LoginFormDesktop(props: Props): JSX.Element {
     <>
       <div className={'email'}>
         <Input
+          hasLabel={true}
           disabled={disabled}
           id={inputs.email.id}
           testId={inputs.email.testId}
@@ -24,6 +25,7 @@ export function LoginFormDesktop(props: Props): JSX.Element {
       </div>
       <div className={'password'}>
         <Input
+          hasLabel={true}
           disabled={disabled}
           id={inputs.password.id}
           testId={inputs.password.testId}

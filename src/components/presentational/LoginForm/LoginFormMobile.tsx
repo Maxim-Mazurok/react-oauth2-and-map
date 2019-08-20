@@ -13,6 +13,7 @@ export function LoginFormMobile(props: Props): JSX.Element {
   return (
     <>
       <Input
+        hasLabel={false}
         disabled={disabled}
         id={inputs.email.id}
         testId={inputs.email.testId}
@@ -22,6 +23,7 @@ export function LoginFormMobile(props: Props): JSX.Element {
       />
       <div className={'password-submit'}>
         <Input
+          hasLabel={false}
           disabled={disabled}
           id={inputs.password.id}
           testId={inputs.password.testId}
