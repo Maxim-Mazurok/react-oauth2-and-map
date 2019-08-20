@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { makeRequest } from '../../../../__mocks__/xhr.mock';
 import {
   Input,
   Props,
@@ -9,10 +8,6 @@ import { toHaveAttribute } from '../../../helpers/toHaveAttribute';
 
 expect.extend({
   toHaveAttribute,
-});
-
-afterEach(() => {
-  makeRequest.mockClear();
 });
 
 const validateInput = (props: Props): void => {

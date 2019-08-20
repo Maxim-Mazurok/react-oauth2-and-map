@@ -3,7 +3,7 @@ import { Input } from './Input';
 import { SignIn } from './SignIn';
 import { inputs } from '../../../helpers/const';
 
-interface Props {
+export interface Props {
   disabled: boolean;
 }
 

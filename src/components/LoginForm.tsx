@@ -6,9 +6,15 @@ import {
   CustomerInformation,
   getCustomerBasicInformation,
 } from '../helpers/api';
-import { LoginFormMobile } from './presentational/LoginForm/LoginFormMobile';
 import { ErrorMessage } from './presentational/ErrorMessage';
-import { LoginFormDesktop } from './presentational/LoginForm/LoginFormDesktop';
+import {
+  Props as LoginFormMobileProps,
+  LoginFormMobile,
+} from './presentational/LoginForm/LoginFormMobile';
+import {
+  Props as LoginFormDesktopProps,
+  LoginFormDesktop,
+} from './presentational/LoginForm/LoginFormDesktop';
 import { inputs, testIDs } from '../helpers/const';
 import { Utils } from '../helpers/utils';
 
@@ -40,7 +46,9 @@ export class LoginForm extends PureComponent<Props, State> {
 
   render(): ReactNode {
     const disabled = this.state.loading;
-    const LoginForm = this.state.mobile ? LoginFormMobile : LoginFormDesktop;
+    const LoginForm: (
+      props: LoginFormMobileProps | LoginFormDesktopProps,
+    ) => JSX.Element = this.state.mobile ? LoginFormMobile : LoginFormDesktop;
 
     return (
       <>
