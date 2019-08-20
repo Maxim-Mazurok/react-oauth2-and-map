@@ -15,7 +15,7 @@ afterEach(() => {
   makeRequest.mockClear();
 });
 
-const validateInput = (props: Props) => {
+const validateInput = (props: Props): void => {
   const { container, getByTestId } = render(<Input {...props} />);
   const input = getByTestId(props.testId);
 

@@ -11,14 +11,12 @@ export const toHaveAttribute = (
 
   if (pass) {
     return {
-      message: () =>
-        `expected ${received.outerHTML} attribute "${qualifiedName}" not to be equal "${value}"`,
+      message: `expected ${received.outerHTML} attribute "${qualifiedName}" not to be equal "${value}"`,
       pass: true,
     };
   } else {
     return {
-      message: () =>
-        `expected ${received.outerHTML} attribute "${qualifiedName}" to be equal "${value}"`,
+      message: `expected ${received.outerHTML} attribute "${qualifiedName}" to be equal "${value}"`,
       pass: false,
     };
   }
