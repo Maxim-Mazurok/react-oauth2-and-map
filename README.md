@@ -16,7 +16,10 @@
   - [ ] (future) Save token
   - [ ] (future) Hide form on mobile with tiny VH
   - [ ] (future) Debounce form loading
-  - [ ] (!!!) Unit tests
+  - [ ] Unit tests
+    - [x] Desktop
+    - [x] Mobile
+    - [ ] (!!!) Generic
 - [ ] Map component
   - [x] Basic markup
   - [x] Probably, DIY
