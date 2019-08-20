@@ -1,10 +1,10 @@
-import { AuthCredentials } from '../../../helpers/oauth2';
+import { AuthCredentials } from '../../helpers/oauth2';
 import {
   BoundFunction,
   fireEvent,
   GetByBoundAttribute,
 } from '@testing-library/dom';
-import { testIDs } from '../../../helpers/const';
+import { testIDs } from '../../helpers/const';
 
 export const getFormControls = (
   getByTestId: BoundFunction<GetByBoundAttribute>,

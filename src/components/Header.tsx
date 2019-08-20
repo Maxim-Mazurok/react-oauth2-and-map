@@ -1,6 +1,6 @@
 import React, { PureComponent, ReactNode } from 'react';
 import { LoginForm } from './LoginForm';
-import { UserInfo } from './UserInfo';
+import { UserInfo } from './presentational/UserInfo';
 import './Header.scss';
 import { CustomerInformation } from '../helpers/api';
 

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
-import { Header } from './Header';
+import { Header } from '../Header';
 import './App.scss';
-import { Map } from './Map';
+import { Map } from '../Map';
 
 export function App(): ReactElement {
   return (
