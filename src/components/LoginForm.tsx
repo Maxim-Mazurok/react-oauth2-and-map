@@ -47,7 +47,7 @@ export class LoginForm extends PureComponent<Props, State> {
         <form data-testid={testIDs.loginForm} onSubmit={this.handleSubmit}>
           <LoginForm disabled={disabled} />
           <ErrorMessage
-            className={'error'}
+            className="error"
             errorMessage={this.state.errorMessage}
           />
         </form>

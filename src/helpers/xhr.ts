@@ -13,6 +13,8 @@ export const makeRequest = (params: {
   request.open(method || 'GET', url, true);
 
   // Set headers
+  // TODO: delete next lint after [https://github.com/typescript-eslint/typescript-eslint/issues/888] resolved
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   for (const property in headers) {
     if (headers.hasOwnProperty(property)) {
       request.setRequestHeader(property, headers[property]);

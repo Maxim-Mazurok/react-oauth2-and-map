@@ -21,7 +21,7 @@ export function LoginFormMobile(props: Props): JSX.Element {
         placeholder="E-mail"
         type="email"
       />
-      <div className={'password-submit'}>
+      <div className="password-submit">
         <Input
           hasLabel={false}
           disabled={disabled}

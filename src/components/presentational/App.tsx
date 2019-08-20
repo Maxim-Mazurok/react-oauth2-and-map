@@ -5,9 +5,9 @@ import { Map } from '../Map';
 
 export function App(): ReactElement {
   return (
-    <div className={'app'}>
+    <div className="app">
       <Header />
-      <Map className={'map'} />
+      <Map className="map" />
     </div>
   );
 }

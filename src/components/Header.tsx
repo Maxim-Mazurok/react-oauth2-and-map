@@ -25,8 +25,8 @@ export class Header extends PureComponent<Props, State> {
       : null;
 
     return (
-      <header className={'header'}>
-        <div className={'logo'} />
+      <header className="header">
+        <div className="logo" />
         {this.isLoggedIn ? (
           <UserInfo customerInformation={customerInformation} />
         ) : (

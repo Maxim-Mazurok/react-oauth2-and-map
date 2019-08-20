@@ -9,7 +9,7 @@ interface Props {
 
 export function UserInfo(props: Props): JSX.Element {
   return (
-    <div className={'welcome'} data-testid={testIDs.userInfo}>
+    <div className="welcome" data-testid={testIDs.userInfo}>
       Welcome,{' '}
       <strong>
         {props.customerInformation.firstName}{' '}

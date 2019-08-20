@@ -35,7 +35,7 @@ export class Map extends PureComponent<Props, State> {
 
     return (
       <main className={this.props.className}>
-        <ErrorMessage className={'map-error'} errorMessage={errorMessage} />
+        <ErrorMessage className="map-error" errorMessage={errorMessage} />
         <div id="google-map" ref={this.googleMapRef} />
       </main>
     );

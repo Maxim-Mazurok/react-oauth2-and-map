@@ -12,7 +12,7 @@ export function LoginFormDesktop(props: Props): JSX.Element {
 
   return (
     <>
-      <div className={'email'}>
+      <div className="email">
         <Input
           hasLabel={true}
           disabled={disabled}
@@ -23,7 +23,7 @@ export function LoginFormDesktop(props: Props): JSX.Element {
           type="email"
         />
       </div>
-      <div className={'password'}>
+      <div className="password">
         <Input
           hasLabel={true}
           disabled={disabled}
