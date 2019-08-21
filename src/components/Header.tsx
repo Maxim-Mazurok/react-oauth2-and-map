@@ -4,31 +4,17 @@ import { UserInfo } from './presentational/UserInfo';
 import './Header.scss';
 import { CustomerInformation } from '../helpers/api';
 
-export interface Props {
-  className?: string;
-}
-
 interface State {
   customerInformation?: CustomerInformation;
 }
 
-export class Header extends PureComponent<Props, State> {
-  private get isLoggedIn(): boolean {
-    return (
-      this.state !== null && this.state.hasOwnProperty('customerInformation')
-    );
-  }
-
+export class Header extends PureComponent<{}, State> {
   render(): ReactNode {
-    const customerInformation = this.state
-      ? this.state.customerInformation
-      : null;
-
     return (
-      <header className="header">
+      <header>
         <div className="logo" />
-        {this.isLoggedIn ? (
-          <UserInfo customerInformation={customerInformation} />
+        {this.state ? (
+          <UserInfo customerInformation={this.state.customerInformation} />
         ) : (
           <LoginForm setCustomerInformation={this.setCustomerInformation} />
         )}
