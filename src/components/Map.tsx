@@ -84,19 +84,34 @@ export class Map extends PureComponent<Props, State> {
     });
     import('@google/markerclustererplus').then(
       (markerClusterer: { default: typeof MarkerClusterer }) => {
-        new markerClusterer.default(this.googleMap, markers, {
-          styles: [
-            {
-              width: markerSize,
-              height: markerSize,
-              url: clusterMarker,
-              textColor: 'white',
-              textSize: 12,
-              fontWeight: 'normal',
-              fontFamily: 'inherit',
-            },
-          ],
-        });
+        const markerClustererObject = new markerClusterer.default(
+          this.googleMap,
+          markers,
+          {
+            styles: [
+              {
+                width: markerSize,
+                height: markerSize,
+                url: clusterMarker,
+                textColor: 'white',
+                textSize: 12,
+                fontWeight: 'normal',
+                fontFamily: 'inherit',
+              },
+            ],
+            zoomOnClick: false,
+          },
+        );
+        google.maps.event.addListener(
+          // workaround to fix zooming on iPhone 6s in landscape mode
+          // TODO: make it smarted, use fitBounds()
+          markerClustererObject,
+          'click',
+          cluster => {
+            this.googleMap.setCenter(cluster.getCenter());
+            this.googleMap.setZoom(this.googleMap.getZoom() + 1);
+          },
+        );
       },
     );
     if (this.chargingPoints.length > 0) {
@@ -105,5 +120,13 @@ export class Map extends PureComponent<Props, State> {
   };
 
   private createGoogleMap = (): google.maps.Map =>
-    new window.google.maps.Map(this.googleMapRef.current);
+    new window.google.maps.Map(this.googleMapRef.current, {
+      gestureHandling: 'greedy',
+      disableDefaultUI: true,
+      zoomControl: true,
+      fullscreenControl: true,
+      fullscreenControlOptions: {
+        position: google.maps.ControlPosition.LEFT_BOTTOM,
+      },
+    });
 }

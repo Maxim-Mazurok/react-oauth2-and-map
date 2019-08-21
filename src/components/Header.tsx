@@ -3,6 +3,7 @@ import { LoginForm } from './LoginForm';
 import { UserInfo } from './presentational/UserInfo';
 import './Header.scss';
 import { CustomerInformation } from '../helpers/api';
+import { safariForceResize } from '../helpers/ios';
 
 interface State {
   customerInformation?: CustomerInformation;
@@ -10,6 +11,8 @@ interface State {
 
 export class Header extends PureComponent<{}, State> {
   render(): ReactNode {
+    safariForceResize();
+
     return (
       <header>
         <div className="logo" />

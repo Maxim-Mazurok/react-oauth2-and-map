@@ -1,4 +1,5 @@
 import React from 'react';
+import { safariInputHack } from '../../../helpers/ios';
 
 interface BaseProps {
   id: string;
@@ -35,6 +36,7 @@ export function Input(props: Props): JSX.Element {
         required={true}
         type={type}
         placeholder={placeholder}
+        onBlur={safariInputHack}
       />
     </>
   );

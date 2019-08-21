@@ -8,15 +8,16 @@ import {
 } from '../helpers/api';
 import { ErrorMessage } from './presentational/ErrorMessage';
 import {
-  Props as LoginFormMobileProps,
   LoginFormMobile,
+  Props as LoginFormMobileProps,
 } from './presentational/LoginForm/LoginFormMobile';
 import {
-  Props as LoginFormDesktopProps,
   LoginFormDesktop,
+  Props as LoginFormDesktopProps,
 } from './presentational/LoginForm/LoginFormDesktop';
 import { inputs, testIDs } from '../helpers/const';
 import { Utils } from '../helpers/utils';
+import { iOSSafari } from '../helpers/ios';
 
 export interface Props {
   setCustomerInformation: (customerInformation: CustomerInformation) => void;
@@ -38,8 +39,17 @@ export class LoginForm extends PureComponent<Props, State> {
     mobile: mediaQuery.matches,
   };
 
+  private static async login(
+    credentials: AuthCredentials,
+  ): Promise<CustomerInformation> {
+    const token: string = await getAccessToken(credentials);
+    return getCustomerBasicInformation(token);
+  }
+
   componentDidMount(): void {
-    mediaQuery.addEventListener('change', (event: MediaQueryListEvent) => {
+    // TODO: addEventListener doesn't work in Safari for MediaQueryList, replace when it'll be supported
+    // tslint:disable-next-line:deprecation
+    mediaQuery.addListener((event: MediaQueryListEvent) => {
       this.setState({ mobile: event.matches });
     });
   }
@@ -52,7 +62,12 @@ export class LoginForm extends PureComponent<Props, State> {
 
     return (
       <>
-        <form data-testid={testIDs.loginForm} onSubmit={this.handleSubmit}>
+        <form
+          data-testid={testIDs.loginForm}
+          onSubmit={this.handleSubmit}
+          /* disable iOS validation message resulting in scrolling */
+          noValidate={iOSSafari}
+        >
           <LoginForm disabled={disabled} />
           <ErrorMessage
             className="error"
@@ -61,13 +76,6 @@ export class LoginForm extends PureComponent<Props, State> {
         </form>
       </>
     );
-  }
-
-  private static async login(
-    credentials: AuthCredentials,
-  ): Promise<CustomerInformation> {
-    const token: string = await getAccessToken(credentials);
-    return getCustomerBasicInformation(token);
   }
 
   private handleSubmit = (
