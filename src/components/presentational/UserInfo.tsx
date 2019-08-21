@@ -3,7 +3,7 @@ import { CustomerInformation } from '../../helpers/api';
 import './UserInfo.scss';
 import { testIDs } from '../../helpers/const';
 
-interface Props {
+export interface Props {
   customerInformation: CustomerInformation;
 }
 

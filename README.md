@@ -11,6 +11,9 @@
   - [x] Login Form
   - [x] Header (login + user info)
   - [x] Map
+- [x] User info component
+  - [x] Basic markup
+  - [x] Unit tests
 - [ ] Login form component
   - [x] Basic markup
   - [x] Media queries
@@ -24,7 +27,7 @@
     - [x] Desktop
     - [x] Mobile
     - [x] Generic
-      - [ ] (future) Maybe add test for mediaQuery with mock
+      - [ ] (future) Add test for mediaQuery with mock
 - [ ] Map component
   - [x] Basic markup
   - [x] Probably, DIY
@@ -33,9 +36,6 @@
   - [x] Unit tests
   - [ ] (future) Add "locate me" button
   - [ ] (low priority) - partially solved by loading simultaneously. Maybe load map only after getting charging points to eliminate default map flash
-- [ ] User info component
-  - [x] Basic markup
-  - [ ] (!!!) Unit tests
 - [ ] Oauth2 service
   - [x] Basic implementation
   - [ ] (!!!) Unit tests
