@@ -8,10 +8,9 @@ import '../../__mocks__/window.mock';
 import { login } from '../helpers/login';
 import { testData, testIDs } from '../../helpers/const';
 import { makeRequest } from '../../__mocks__/xhr.mock';
-import { Header } from '../../components/Header'; // should be imported only after all mocks
+import { flushPromises } from '../helpers/flushPromises';
 
-const flushPromises = (): Promise<NodeJS.Immediate> =>
-  new Promise(setImmediate);
+import { Header } from '../../components/Header'; // should be imported only after all mocks
 
 jest.setTimeout(10000000);
 

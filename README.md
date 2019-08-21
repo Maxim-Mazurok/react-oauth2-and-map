@@ -19,7 +19,8 @@
   - [ ] Unit tests
     - [x] Desktop
     - [x] Mobile
-    - [ ] (!!!) Generic
+    - [x] Generic
+      - [ ] (future) Maybe add test for mediaQuery with mock
 - [ ] Map component
   - [x] Basic markup
   - [x] Probably, DIY

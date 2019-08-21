@@ -49,14 +49,16 @@ export const validateLoginFormMobile = (props: LoginFormMobileProps): void => {
   expect(button).toHaveAttribute('type', 'submit');
 };
 
-test('LoginFormMobile disabled renders', () => {
-  validateLoginFormMobile({
-    disabled: true,
+describe('LoginFormMobile renders', () => {
+  test('disabled', () => {
+    validateLoginFormMobile({
+      disabled: true,
+    });
   });
-});
 
-test('LoginFormMobile enabled renders', () => {
-  validateLoginFormMobile({
-    disabled: false,
+  test('enabled', () => {
+    validateLoginFormMobile({
+      disabled: false,
+    });
   });
 });

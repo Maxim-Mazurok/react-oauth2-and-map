@@ -10,7 +10,7 @@ afterEach(() => {
   makeRequest.mockClear();
 });
 
-test('LoginForm controls are disabled while logging in', async () => {
+test('LoginForm controls are disabled while logging in', () => {
   const props: Props = {
     setCustomerInformation: jest.fn(),
   };

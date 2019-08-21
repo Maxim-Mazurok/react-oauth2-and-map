@@ -26,14 +26,16 @@ const validateSignIn = (props: Props): void => {
   expect(button).toHaveAttribute('type', 'submit');
 };
 
-test('SignIn disabled renders', () => {
-  validateSignIn({
-    disabled: true,
+describe('SignIn renders', () => {
+  test('disabled', () => {
+    validateSignIn({
+      disabled: true,
+    });
   });
-});
 
-test('SignIn enabled renders', () => {
-  validateSignIn({
-    disabled: false,
+  test('enabled', () => {
+    validateSignIn({
+      disabled: false,
+    });
   });
 });

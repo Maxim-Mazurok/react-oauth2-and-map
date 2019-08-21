@@ -44,14 +44,16 @@ const validateLoginFormDesktop = (props: Props): void => {
   expect(button).toHaveAttribute('type', 'submit');
 };
 
-test('LoginFormDesktop disabled renders', () => {
-  validateLoginFormDesktop({
-    disabled: true,
+describe('LoginFormDesktop renders', () => {
+  test('disabled', () => {
+    validateLoginFormDesktop({
+      disabled: true,
+    });
   });
-});
 
-test('LoginFormDesktop enabled renders', () => {
-  validateLoginFormDesktop({
-    disabled: false,
+  test('enabled', () => {
+    validateLoginFormDesktop({
+      disabled: false,
+    });
   });
 });

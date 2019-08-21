@@ -63,12 +63,11 @@ export class LoginForm extends PureComponent<Props, State> {
     );
   }
 
-  private async login(credentials: AuthCredentials): Promise<void> {
+  private static async login(
+    credentials: AuthCredentials,
+  ): Promise<CustomerInformation> {
     const token: string = await getAccessToken(credentials);
-    const customerInformation: CustomerInformation = await getCustomerBasicInformation(
-      token,
-    );
-    this.props.setCustomerInformation(customerInformation);
+    return getCustomerBasicInformation(token);
   }
 
   private handleSubmit = (
@@ -82,11 +81,15 @@ export class LoginForm extends PureComponent<Props, State> {
     this.setState({ loading: true });
 
     const elements: HTMLFormControlsCollection = event.target.elements;
-    this.login({
+    LoginForm.login({
       username: Utils.valuedById(elements, inputs.email.id),
       password: Utils.valuedById(elements, inputs.password.id),
-    }).catch((e: Error) =>
-      this.setState({ errorMessage: e.message, loading: false }),
-    );
+    })
+      .then((customerInformation: CustomerInformation) => {
+        this.props.setCustomerInformation(customerInformation);
+      })
+      .catch((e: Error) =>
+        this.setState({ errorMessage: e.message, loading: false }),
+      );
   };
 }

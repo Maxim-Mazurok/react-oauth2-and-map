@@ -34,50 +34,54 @@ const validateInput = (props: Props): void => {
   }
 };
 
-test('Input disabled with label renders', () => {
-  validateInput({
-    testId: 'firstTestId',
-    disabled: true,
-    id: 'firstId',
-    hasLabel: true,
-    label: 'firstLabel',
-    placeholder: 'firstPlaceholder',
-    type: 'email',
+describe('Input renders', () => {
+  describe('disabled', () => {
+    test('with label', () => {
+      validateInput({
+        testId: 'firstTestId',
+        disabled: true,
+        id: 'firstId',
+        hasLabel: true,
+        label: 'firstLabel',
+        placeholder: 'firstPlaceholder',
+        type: 'email',
+      });
+    });
+    test('without label', () => {
+      validateInput({
+        testId: 'secondTestId',
+        disabled: true,
+        id: 'secondId',
+        hasLabel: false,
+        ariaLabel: 'secondAriaLabel',
+        placeholder: 'secondPlaceholder',
+        type: 'email',
+      });
+    });
   });
-});
+  describe('enabled', () => {
+    test('with label', () => {
+      validateInput({
+        testId: 'thirdTestId',
+        disabled: false,
+        id: 'thirdId',
+        hasLabel: true,
+        label: 'thirdLabel',
+        placeholder: 'thirdPlaceholder',
+        type: 'email',
+      });
+    });
 
-test('Input disabled without label renders', () => {
-  validateInput({
-    testId: 'secondTestId',
-    disabled: true,
-    id: 'secondId',
-    hasLabel: false,
-    ariaLabel: 'secondAriaLabel',
-    placeholder: 'secondPlaceholder',
-    type: 'email',
-  });
-});
-
-test('Input enabled with label renders', () => {
-  validateInput({
-    testId: 'thirdTestId',
-    disabled: false,
-    id: 'thirdId',
-    hasLabel: true,
-    label: 'thirdLabel',
-    placeholder: 'thirdPlaceholder',
-    type: 'email',
-  });
-});
-
-test('Input enabled without label renders', () => {
-  validateInput({
-    testId: 'fourthTestId',
-    disabled: false,
-    id: 'fourthId',
-    hasLabel: false,
-    ariaLabel: 'fourthAriaLabel',
-    placeholder: 'fourthPlaceholder',
-    type: 'email',
+    test('without label', () => {
+      validateInput({
+        testId: 'fourthTestId',
+        disabled: false,
+        id: 'fourthId',
+        hasLabel: false,
+        ariaLabel: 'fourthAriaLabel',
+        placeholder: 'fourthPlaceholder',
+        type: 'email',
+      });
+    });
   });
 });
