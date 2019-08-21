@@ -7,6 +7,10 @@
 - [x] Probably, use Bootstrap CSS framework (as on the myNewMotion)
 - [x] Get rif of the Bootstrap because it's an overhead for such a simple layout, but leave it as a branch for historical purpose
 - [x] Probably, no routing will be required (as seen on the myNewMotion, login and map are on the same page)
+- [x] Integration tests
+  - [x] Login Form
+  - [x] Header (login + user info)
+  - [x] Map
 - [ ] Login form component
   - [x] Basic markup
   - [x] Media queries
@@ -26,9 +30,9 @@
   - [x] Probably, DIY
   - [x] Maybe mark "Adresgegevens nog niet verwerkt" as greyed out
   - [x] Markers for retina
+  - [x] Unit tests
   - [ ] (future) Add "locate me" button
   - [ ] (low priority) - partially solved by loading simultaneously. Maybe load map only after getting charging points to eliminate default map flash
-  - [ ] (!!!) Unit tests
 - [ ] User info component
   - [x] Basic markup
   - [ ] (!!!) Unit tests
@@ -38,10 +42,6 @@
 - [ ] HTTP API service
   - [x] Basic implementation
   - [ ] (!!!) Unit tests
-- [ ] Integration tests
-  - [x] Login Form
-  - [x] Header (login + user info)
-  - [ ] (!!!) Map
 - [ ] Cross-browser testing
   - [ ] (future) Determine which polyfills are actually required (reduce bundle size)
   - [ ] (!!!) Basic testing

@@ -12,15 +12,11 @@ export interface Props {
 
 interface State {
   errorMessage?: string;
-  test: number;
 }
 
 const markerSize = 30;
 
 export class Map extends PureComponent<Props, State> {
-  state: Readonly<State> = {
-    test: 0,
-  };
   private googleMap: google.maps.Map;
   private googleMapRef: RefObject<HTMLDivElement> = createRef();
   private chargingPoints: ChargingPoint[] = [];
@@ -31,12 +27,15 @@ export class Map extends PureComponent<Props, State> {
   }
 
   render(): ReactNode {
-    const { errorMessage } = this.state;
-
     return (
       <main className={this.props.className}>
-        <ErrorMessage className="map-error" errorMessage={errorMessage} />
-        <div id="google-map" ref={this.googleMapRef} />
+        {this.state && (
+          <ErrorMessage
+            className="map-error"
+            errorMessage={this.state.errorMessage}
+          />
+        )}
+        <div className="google-map" ref={this.googleMapRef} />
       </main>
     );
   }

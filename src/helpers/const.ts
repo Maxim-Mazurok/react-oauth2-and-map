@@ -45,5 +45,9 @@ export const config: OAuth2Config & APIConfig = {
   },
   authGrantType: 'password',
   userEndpoint: process.env.USER_API_ENDPOINT,
-  chargingPointsEndpoint: process.env.CHARGING_POINTS_API_ENDPOINT,
+  chargingPointsEndpoint:
+    process.env.CHARGING_POINTS_API_ENDPOINT +
+    (process.env.CHARGING_POINTS_API_ENDPOINT_PORT
+      ? `:${process.env.CHARGING_POINTS_API_ENDPOINT_PORT}`
+      : ''),
 };

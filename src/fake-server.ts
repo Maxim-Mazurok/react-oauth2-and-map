@@ -1,15 +1,11 @@
 import * as http from 'http'; // eslint-disable-line import/no-duplicates
 import { IncomingMessage, ServerResponse } from 'http'; // eslint-disable-line import/no-duplicates
-import * as fs from 'fs';
-import * as path from 'path';
-
-const chargePoints = fs.readFileSync(
-  path.resolve(__dirname, '../sample-json-charge-points.json'),
-);
+import { chargePoints } from './helpers/chargePoints';
 
 http
   .createServer((req: IncomingMessage, res: ServerResponse) => {
     res.writeHead(200, 'OK', {
+      // enable CORS
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': '*',
       'Access-Control-Allow-Headers': '*',
@@ -17,4 +13,4 @@ http
     res.write(chargePoints);
     res.end();
   })
-  .listen(8081);
+  .listen(process.env.CHARGING_POINTS_API_ENDPOINT_PORT);

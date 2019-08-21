@@ -1,5 +1,6 @@
 import { config, testData } from '../helpers/const';
 import { makeRequest as makeRequestOriginal } from '../helpers/xhr';
+import { chargePoints } from '../helpers/chargePoints';
 
 export const makeRequest = jest
   .fn<
@@ -41,29 +42,30 @@ export const makeRequest = jest
         }
       case `${config.userEndpoint}/me`:
         return Promise.resolve(
-          '{\n' +
-            '  "externalId": "0015E00000a836H",\n' +
-            '  "email": "programming-assignment@newmotion.com",\n' +
-            '  "country": "Netherlands",\n' +
-            '  "locale": "en_NL",\n' +
-            `  "lastName": "${testData.lastName}",\n` +
-            `  "firstName": "${testData.firstName}",\n` +
-            '  "id": "dee0bcf4-ca1f-4f24-b551-c6b16e034063",\n' +
-            '  "countryCode": "nl",\n' +
-            '  "status": "active",\n' +
-            '  "_links": {\n' +
-            '    "self": {\n' +
-            '      "href": "/v1/customers/dee0bcf4-ca1f-4f24-b551-c6b16e034063"\n' +
-            '    },\n' +
-            '    "charge-session-history": {\n' +
-            '      "href": "/v1/charge-session-history?jwt=eyJhbGciOiJBMTI4S1ciLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0.I3Uw8LdomObGfialh-rO2kpMnfaEkbweiUyCZXmZqHMWauJvvuNqvA.tEXFocW1QHuyaSuv-P3rNA.nHM85PqjR-YizLDEJeeEv2Hn-kxkoIf98pDNIvukytozdAjGwphDJmwxBo1mXGsNL0iZH3HMDhagOgYxijPG_E13vjqRWGHUjdDNvcJ4R6M.lXbC4zRi_BOjGIDml_x4nA"\n' +
-            '    },\n' +
-            '    "mailing-lists": {\n' +
-            '      "href": "/v1/customers/dee0bcf4-ca1f-4f24-b551-c6b16e034063/mailing-lists"\n' +
-            '    }\n' +
-            '  }\n' +
-            '}',
+          `
+          {
+            "externalId": "xxxxxxxxxxxxxxx",
+            "email": "${testData.email.valid}",
+            "country": "Netherlands",
+            "locale": "en_NL",
+            "lastName": "${testData.lastName}",\n  "firstName": "${testData.firstName}",\n  "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "countryCode": "nl",
+            "status": "active",
+            "_links": {
+              "self": {
+                "href": "/v1/customers/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+              },
+              "charge-session-history": {
+                "href": "/v1/charge-session-history?jwt=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+              },
+              "mailing-lists": {
+                "href": "/v1/customers/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/mailing-lists"
+              }
+            }
+          }`,
         );
+      case `${config.chargingPointsEndpoint}`:
+        return Promise.resolve(chargePoints.toString());
       default:
         return Promise.reject(new Error('Unknown URL requested'));
     }
