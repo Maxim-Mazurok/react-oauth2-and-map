@@ -1,8 +1,8 @@
 import React from 'react';
 import { testIDs } from '../../helpers/const';
 
-interface Props {
-  className?: string;
+export interface Props {
+  className: string;
   errorMessage?: string;
 }
 
