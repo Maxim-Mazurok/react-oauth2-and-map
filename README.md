@@ -1,3 +1,53 @@
+# Story
+
+**DISCLAIMER**: For the past few weeks I've been working on this assignment pretty much full-time.
+My goal was to make it as much production-ready as possible, while showcasing my skills by not overusing NPM packages.
+
+## Why it's single page, and not separate login and map pages?
+
+I used [my.newmotion.com](https://my.newmotion.com/) as a reference, because it looks pretty similar to the assignment requirements.
+But in assignment, there were request for separate pages for login and map.
+Because I was aiming to create real-life website, I put a lot of thought into it.
+I thought that it would be much better UX to show the map without requiring to login first, and this approach is also used on myNewMotion.
+So, I decided to go with the same approach.
+Using separate login page would make sense in case if our first priority was to get new customer sign-ups,
+because in this scenario if user wants to see the map - one have to sign up first.
+I made an assumption that priority is to provide the best UX to both new and returning customers, so single page made more sense to me.
+
+After deciding on that, I created a simple [layout mockup](./design/mockup.png).
+I researched which technologies are used on myNewMotion, because it's very likely that I'll be dealing with them on the job.
+I found out that it uses Bootstrap and I felt pretty comfortable using it, so I decided to go with it.
+I've used [React Bootstrap](https://react-bootstrap.github.io/) package for my first prototype.
+Down the road, I found out that my IDE doesn't understand React-Bootstrap types correctly.
+I've opened [PR](https://github.com/react-bootstrap/react-bootstrap/pull/4221) but it was quite dirty solution.
+Later, I tried to make it better, found another bug, but it seems like there's a bug in React typings that prevents me from implementing this fix.
+Anyway, I also reported the [issue](https://youtrack.jetbrains.com/issue/WEB-40641?p=IDEA-220380) to the IDE bug tracker.
+
+Because I was using myNewMotion as a reference, I needed to get rid of the rounded corners for inputs that bootstrap uses by default.
+Obviously, there's a ton of ways to do this, but I thought that the best way is to set `$enable-rounded` variable in the SCSS version of Bootstrap to `false`.
+I didn't find any way to do this from React-Bootstrap library, had a chat on their discord channel with maintainers and I realized that it was pretty obvious.
+The library itself is not dependant on Bootstrap and doesn't actually use it, it gets loaded from cdn.
+So, my only option was to build the Bootstrap by my own, which is not a great idea from maintainability perspective.
+at that moment, I decided that using Bootstrap is an overhead for such a simple layout and I got rid of it.
+
+- "?" in the middle of nowhere
+- SVG icons
+- colors contrast dilemma (pa11y)
+
+## Timeline
+
+- _8/7 (evening)_ - Initial setup: nvm, git, react, babel, webpack
+- _8/8_ - Initial setup: typescript, favicon, tslint, prettier, husky, scss, stylelint, todos draft, jest
+- _8/9_ - Crated mockup, first prototype; added bootstrap, dotenv, google maps, logo
+- _8/10_ - Got rid of the bootstrap; UI design
+- _8/11_ - Adaptive layout, cross-browser testing and fixes, npm update, improved accessibility
+- _8/12 - 8/14_ - Created OAuth2 and API services, makeRequest function, marker clustering, SVG markers, user info component, MediaQueryListListener
+- _8/15 - 8/17_ - Added eslint, tests, mocks; refactoring
+- _8/18_ - Refactoring, optimization, minor fixes
+- _8/19 - 8/21_ - Tests, refactoring, bug fixes and performance improvements
+- _8/22_ - Bizarre iOS Safari layout bug fixes :)
+- _8/23_ - Final testing and code review
+
 # ToDo:
 
 - [x] Configure webpack with babel and plugins
