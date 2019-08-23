@@ -203,7 +203,7 @@ Webpack clears dist folder before every build, so you have to rebuild server aft
 1. Open project in terminal
 2. Install `serve` globally:
    ```shell script
-   npm install -g server
+   npm install -g serve
    ```
 3. Start the server:
    ```shell script
@@ -211,7 +211,7 @@ Webpack clears dist folder before every build, so you have to rebuild server aft
    ```
 4. Serve the app:
    ```shell script
-   server dist
+   serve dist
    ```
 5. Open URL provided by `serve`. It should look like this for local viewing: `http://localhost:5000`
 6. If you'd like to test it on your mobile device:
