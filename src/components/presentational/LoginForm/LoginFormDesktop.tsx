@@ -13,7 +13,6 @@ export class LoginFormDesktop extends PureComponent<Props> {
 
     return [
       <div key="email" className="email">
-        ...
         <Input
           hasLabel={true}
           disabled={disabled}
