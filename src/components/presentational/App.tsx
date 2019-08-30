@@ -3,7 +3,7 @@ import { Header } from '../Header';
 import './App.scss';
 import { Map } from '../Map';
 
-export function App(): ReactElement {
+export function App(): ReactElement<{}> {
   return (
     <div className="app">
       <Header />

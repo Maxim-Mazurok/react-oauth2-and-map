@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { safariInputHack } from '../../../helpers/ios';
 
 interface BaseProps {
@@ -22,7 +22,7 @@ interface PropsWithAriaLabel extends BaseProps {
 
 export type Props = PropsWithAriaLabel | PropsWithLabel;
 
-export function Input(props: Props): JSX.Element {
+export function Input(props: Props): ReactElement<Props> {
   const { id, testId, disabled, type, placeholder } = props;
 
   return (

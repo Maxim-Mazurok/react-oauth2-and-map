@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { CustomerInformation } from '../../helpers/api';
 import './UserInfo.scss';
 import { testIDs } from '../../helpers/const';
@@ -7,7 +7,7 @@ export interface Props {
   customerInformation: CustomerInformation;
 }
 
-export function UserInfo(props: Props): JSX.Element {
+export function UserInfo(props: Props): ReactElement<Props> {
   return (
     <div className="welcome" data-testid={testIDs.userInfo}>
       Welcome,{' '}

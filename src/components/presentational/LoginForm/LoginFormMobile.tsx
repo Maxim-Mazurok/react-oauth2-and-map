@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Input } from './Input';
 import { SignIn } from './SignIn';
 import { inputs } from '../../../helpers/const';
@@ -7,7 +7,7 @@ export interface Props {
   disabled: boolean;
 }
 
-export function LoginFormMobile(props: Props): JSX.Element {
+export function LoginFormMobile(props: Props): ReactElement<Props> {
   const { disabled } = props;
 
   return (
