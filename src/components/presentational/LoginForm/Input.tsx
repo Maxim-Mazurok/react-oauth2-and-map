@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { PureComponent, ReactElement } from 'react';
 import { safariInputHack } from '../../../helpers/ios';
 
 interface BaseProps {
@@ -22,22 +22,29 @@ interface PropsWithAriaLabel extends BaseProps {
 
 export type Props = PropsWithAriaLabel | PropsWithLabel;
 
-export function Input(props: Props): ReactElement<Props> {
-  const { id, testId, disabled, type, placeholder } = props;
+export class Input extends PureComponent<Props> {
+  render(): Array<ReactElement<Props>> {
+    const { id, testId, disabled, type, placeholder } = this.props;
 
-  return (
-    <>
-      {props.hasLabel && <label htmlFor={id}>{props.label}</label>}
+    return [
+      this.props.hasLabel ? (
+        <label key={`${id}-label`} htmlFor={id}>
+          {this.props.label}
+        </label>
+      ) : null,
       <input
-        {...(props.hasLabel === false ? { 'aria-label': props.ariaLabel } : {})}
+        {...(this.props.hasLabel === false
+          ? { 'aria-label': this.props.ariaLabel }
+          : {})}
         id={id}
+        key={`${id}-input`}
         data-testid={testId}
         disabled={disabled}
         required={true}
         type={type}
         placeholder={placeholder}
         onBlur={safariInputHack}
-      />
-    </>
-  );
+      />,
+    ];
+  }
 }

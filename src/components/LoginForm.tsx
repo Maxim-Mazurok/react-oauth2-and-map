@@ -7,14 +7,8 @@ import {
   getCustomerBasicInformation,
 } from '../helpers/api';
 import { ErrorMessage } from './presentational/ErrorMessage';
-import {
-  LoginFormMobile,
-  Props as LoginFormMobileProps,
-} from './presentational/LoginForm/LoginFormMobile';
-import {
-  LoginFormDesktop,
-  Props as LoginFormDesktopProps,
-} from './presentational/LoginForm/LoginFormDesktop';
+import { LoginFormMobile } from './presentational/LoginForm/LoginFormMobile';
+import { LoginFormDesktop } from './presentational/LoginForm/LoginFormDesktop';
 import { inputs, testIDs } from '../helpers/const';
 import { Utils } from '../helpers/utils';
 import { iOSSafari } from '../helpers/ios';
@@ -56,25 +50,21 @@ export class LoginForm extends PureComponent<Props, State> {
 
   render(): ReactNode {
     const disabled = this.state.loading;
-    const LoginForm: (
-      props: LoginFormMobileProps | LoginFormDesktopProps,
-    ) => JSX.Element = this.state.mobile ? LoginFormMobile : LoginFormDesktop;
+    const LoginForm = this.state.mobile ? LoginFormMobile : LoginFormDesktop;
 
     return (
-      <>
-        <form
-          data-testid={testIDs.loginForm}
-          onSubmit={this.handleSubmit}
-          /* disable iOS validation message resulting in scrolling */
-          noValidate={iOSSafari}
-        >
-          <LoginForm disabled={disabled} />
-          <ErrorMessage
-            className="error"
-            errorMessage={this.state.errorMessage}
-          />
-        </form>
-      </>
+      <form
+        data-testid={testIDs.loginForm}
+        onSubmit={this.handleSubmit}
+        /* disable iOS validation message resulting in scrolling */
+        noValidate={iOSSafari}
+      >
+        <LoginForm disabled={disabled} />
+        <ErrorMessage
+          className="error"
+          errorMessage={this.state.errorMessage}
+        />
+      </form>
     );
   }
 

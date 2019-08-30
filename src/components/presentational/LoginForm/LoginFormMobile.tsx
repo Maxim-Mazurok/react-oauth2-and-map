@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { PureComponent, ReactElement } from 'react';
 import { Input } from './Input';
 import { SignIn } from './SignIn';
 import { inputs } from '../../../helpers/const';
@@ -7,21 +7,22 @@ export interface Props {
   disabled: boolean;
 }
 
-export function LoginFormMobile(props: Props): ReactElement<Props> {
-  const { disabled } = props;
+export class LoginFormMobile extends PureComponent<Props> {
+  render(): Array<ReactElement<Props>> {
+    const { disabled } = this.props;
 
-  return (
-    <>
+    return [
       <Input
         hasLabel={false}
         disabled={disabled}
+        key="email"
         id={inputs.email.id}
         testId={inputs.email.testId}
         ariaLabel={inputs.email.label}
         placeholder="E-mail"
         type="email"
-      />
-      <div className="password-submit">
+      />,
+      <div key="password" className="password-submit">
         <Input
           hasLabel={false}
           disabled={disabled}
@@ -32,7 +33,7 @@ export function LoginFormMobile(props: Props): ReactElement<Props> {
           type="password"
         />
         <SignIn disabled={disabled} />
-      </div>
-    </>
-  );
+      </div>,
+    ];
+  }
 }

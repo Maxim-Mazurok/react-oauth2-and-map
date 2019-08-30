@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { PureComponent, ReactElement } from 'react';
 import { Input } from './Input';
 import { SignIn } from './SignIn';
 import { inputs } from '../../../helpers/const';
@@ -7,12 +7,13 @@ export interface Props {
   disabled: boolean;
 }
 
-export function LoginFormDesktop(props: Props): ReactElement<Props> {
-  const { disabled } = props;
+export class LoginFormDesktop extends PureComponent<Props> {
+  render(): Array<ReactElement<Props>> {
+    const { disabled } = this.props;
 
-  return (
-    <>
-      <div className="email">
+    return [
+      <div key="email" className="email">
+        ...
         <Input
           hasLabel={true}
           disabled={disabled}
@@ -22,8 +23,8 @@ export function LoginFormDesktop(props: Props): ReactElement<Props> {
           placeholder="programming-assignment@newmotion.com"
           type="email"
         />
-      </div>
-      <div className="password">
+      </div>,
+      <div key="password" className="password">
         <Input
           hasLabel={true}
           disabled={disabled}
@@ -33,8 +34,8 @@ export function LoginFormDesktop(props: Props): ReactElement<Props> {
           placeholder={'•'.repeat(8)}
           type="password"
         />
-      </div>
-      <SignIn disabled={disabled} />
-    </>
-  );
+      </div>,
+      <SignIn key="submit" disabled={disabled} />,
+    ];
+  }
 }
